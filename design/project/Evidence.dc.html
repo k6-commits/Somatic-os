@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>きろく</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@500;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 52px 20px 0; display: flex; flex-direction: column; gap: 12px; background: #F1F3F2; color: #1C2321; font-family: 'Zen Kaku Gothic New', sans-serif; word-break: auto-phrase">
+
+<div style="display: flex; justify-content: space-between; align-items: center">
+<h1 style="margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 28px">きろく</h1>
+<a href="{{lk.consult.href}}" onClick="{{lk.consult.on}}" aria-label="相談する" style="width: 44px; height: 44px; box-sizing: border-box; border-radius: 50%; background: #FFFFFF; border: 1px solid #DCE1DF; color: #34407A; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle><path d="M5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"></path></svg>
+</a>
+</div>
+
+<sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 22px; padding: 20px 18px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 17px; font-weight: 700">まだ記録はありません</span>
+<span style="font-size: 14px; line-height: 1.7; color: #46514D">きょう1つできたら、ここに残ります。数えるのは、できたことだけです。</span>
+</div>
+</sc-if>
+
+<sc-if value="{{rest}}" hint-placeholder-val="{{ false }}">
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 16px; font-weight: 700">まもる日は、数や表を出しません</span>
+<span style="font-size: 14px; line-height: 1.7; color: #46514D">できたことだけ、ここに残ります。</span>
+</div>
+</sc-if>
+
+<sc-if value="{{backView}}" hint-placeholder-val="{{ false }}">
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 22px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 13px; color: #56615D">きょうのできた</span>
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 44px; line-height: 1.15; color: #34407A">1<span style="font-size: 20px; color: #1C2321; margin-left: 4px">個</span></span>
+<span style="font-size: 14px; line-height: 1.7; color: #46514D">空いた日は数えません。きょうから、また残ります。</span>
+</div>
+</sc-if>
+
+<sc-if value="{{full}}" hint-placeholder-val="{{ true }}">
+<div role="group" aria-label="表示の切り替え" style="display: flex; padding: 4px; border-radius: 16px; background: #E3E7E5">
+<button type="button" aria-pressed="{{isDone}}" onClick="{{pickDone}}" style="flex: 1; min-height: 44px; border: none; border-radius: 12px; background: {{tabDoneBg}}; color: {{tabDoneFg}}; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer">できた</button>
+<button type="button" aria-pressed="{{isBody}}" onClick="{{pickBody}}" style="flex: 1; min-height: 44px; border: none; border-radius: 12px; background: {{tabBodyBg}}; color: {{tabBodyFg}}; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer">からだ</button>
+</div>
+</sc-if>
+
+<sc-if value="{{showDone}}" hint-placeholder-val="{{ true }}">
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 22px; padding: 14px 18px; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 13px; color: #56615D">今週のできた</span>
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 50px; line-height: 1.15; color: #34407A">16<span style="font-size: 20px; color: #1C2321; margin-left: 4px">個</span></span>
+<span style="font-size: 13.5px; color: #46514D">数えるのは、できたことだけ。</span>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 22px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<span style="font-size: 15px; font-weight: 700">この1週間</span>
+<span style="font-size: 12.5px; color: #56615D">丸1つ＝できた1つ</span>
+</div>
+<div role="img" aria-label="この1週間のできた：月2、火1、水2、木2、金3、土3、きょう3" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px">
+<sc-for list="{{week}}" as="d" hint-placeholder-count="7">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px">
+<div style="height: 70px; display: flex; flex-direction: column-reverse; align-items: center; gap: 5px">
+<sc-for list="{{d.pebbles}}" as="p" hint-placeholder-count="2">
+<span style="width: 13px; height: 13px; border-radius: 50%; background: #34407A"></span>
+</sc-for>
+</div>
+<span style="width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; color: {{d.iconColor}}">
+<sc-if value="{{d.isRest}}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg></sc-if>
+<sc-if value="{{d.isTune}}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 8h10M8 12h11M4 16h9M10 20h6"></path></svg></sc-if>
+<sc-if value="{{d.isExpand}}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"></path></svg></sc-if>
+</span>
+<span style="font-size: 12.5px; font-weight: {{d.weight}}; color: {{d.fg}}">{{d.label}}</span>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; gap: 14px; font-size: 12px; color: #56615D">
+<span style="display: flex; align-items: center; gap: 4px"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="fill: none; stroke: #1B2140; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>まもる日</span>
+<span style="display: flex; align-items: center; gap: 4px"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="fill: none; stroke: #34407A; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 8h10M8 12h11M4 16h9M10 20h6"></path></svg>ととのえる日</span>
+<span style="display: flex; align-items: center; gap: 4px"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="fill: none; stroke: #8A5A00; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"></path></svg>ひろげる日</span>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{showBody}}" hint-placeholder-val="{{ false }}">
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 22px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<span style="font-size: 15px; font-weight: 700">この1週間のからだ</span>
+<span style="padding: 2px 8px; border-radius: 6px; background: #E3E7E5; font-size: 11.5px; font-weight: 700; color: #46514D">サンプル表示</span>
+</div>
+<table style="width: 100%; border-collapse: collapse; font-size: 14px">
+<thead>
+<tr style="text-align: left; color: #56615D; font-size: 12.5px">
+<th style="padding: 6px 4px; font-weight: 700">日</th>
+<th style="padding: 6px 4px; font-weight: 700">睡眠（時間）</th>
+<th style="padding: 6px 4px; font-weight: 700">気分</th>
+<th style="padding: 6px 4px; font-weight: 700">疲れ</th>
+</tr>
+</thead>
+<tbody>
+<sc-for list="{{bodyRows}}" as="r" hint-placeholder-count="7">
+<tr style="border-top: 1px solid #EEF1EF">
+<td style="padding: 7px 4px; font-weight: 700">{{r.d}}</td>
+<td style="padding: 7px 4px">{{r.sleep}}</td>
+<td style="padding: 7px 4px">{{r.mood}}</td>
+<td style="padding: 7px 4px">{{r.fatigue}}</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+<span style="font-size: 12px; color: #56615D">気分は1（低い）〜5（よい）、疲れは1（元気）〜5（くたくた）</span>
+</div>
+</sc-if>
+
+<sc-if value="{{showList}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 style="margin: 0; font-size: 15px; font-weight: 700">最近のできた</h2>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column">
+<sc-for list="{{recent}}" as="r" hint-placeholder-count="3">
+<li style="min-height: 44px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid {{r.line}}">
+<span aria-hidden="true" style="flex: none; width: 12px; height: 12px; border-radius: 50%; background: #34407A"></span>
+<span style="flex: 1; font-size: 15px">{{r.t}}</span>
+<span style="font-size: 12.5px; color: #56615D">{{r.when}}</span>
+</li>
+</sc-for>
+</ul>
+</div>
+</sc-if>
+
+<nav aria-label="メインメニュー" style="margin: auto -20px 0; height: 76px; background: #FFFFFF; border-top: 1px solid #DCE1DF; display: flex; justify-content: space-around; align-items: center">
+<a href="{{lk.home.href}}" onClick="{{lk.home.on}}" style="min-width: 72px; min-height: 48px; color: #56615D; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11.5px; font-weight: 700">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1z"></path></svg>
+きょう
+</a>
+<a href="{{lk.self.href}}" onClick="{{lk.self.on}}" aria-current="page" style="min-width: 72px; min-height: 48px; color: #34407A; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11.5px; font-weight: 700">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="7" cy="16" r="3"></circle><circle cx="15" cy="17" r="3.5"></circle><circle cx="12" cy="9" r="3"></circle></svg>
+きろく
+</a>
+<a href="{{lk.pause.href}}" onClick="{{lk.pause.on}}" style="min-width: 72px; min-height: 48px; color: #34407A; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11.5px; font-weight: 700">
+<span aria-hidden="true" style="width: 30px; height: 30px; border-radius: 50%; background: #34407A; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="17" height="17" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg></span>
+つらいとき
+</a>
+<a href="{{lk.insights.href}}" onClick="{{lk.insights.on}}" style="min-width: 72px; min-height: 48px; color: #56615D; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11.5px; font-weight: 700">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"></path></svg>
+わかったこと
+</a>
+</nav>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"nav":{"editor":null},"mode":{"editor":null},"days":{"editor":null},"scene":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { view: 'done' };
+}
+lk(target, fn) {
+const nav = this.props.nav;
+if (!nav) return { href: target + '.dc.html', on: null };
+return {
+href: '#',
+on: (e) => {
+if (e && e.preventDefault) e.preventDefault();
+if (fn) fn(nav); else nav.go(target);
+}
+};
+}
+renderVals() {
+const mode = this.props.mode || 'tune';
+const days = (this.props.days === undefined || this.props.days === null) ? 14 : this.props.days;
+const empty = days === 0;
+const back = this.props.scene === 'back';
+const rest = !empty && mode === 'rest';
+const full = !empty && !rest && !back;
+const view = this.state.view;
+const colors = { rest: '#1B2140', tune: '#34407A', expand: '#8A5A00' };
+const weekDefs = [
+{ label: '月', mode: 'tune', n: 2 },
+{ label: '火', mode: 'rest', n: 1 },
+{ label: '水', mode: 'rest', n: 2 },
+{ label: '木', mode: 'tune', n: 2 },
+{ label: '金', mode: 'tune', n: 3 },
+{ label: '土', mode: 'expand', n: 3 },
+{ label: 'きょう', mode: 'tune', n: 3 }
+];
+const week = weekDefs.map((d, i) => {
+const isToday = i === weekDefs.length - 1;
+return {
+label: d.label,
+isRest: d.mode === 'rest',
+isTune: d.mode === 'tune',
+isExpand: d.mode === 'expand',
+iconColor: colors[d.mode],
+pebbles: Array.from({ length: d.n }, (_, k) => ({ k: k })),
+weight: isToday ? 700 : 500,
+fg: isToday ? '#1C2321' : '#56615D'
+};
+});
+const bodyRows = [
+{ d: '月', sleep: '6〜7', mood: '3', fatigue: '3' },
+{ d: '火', sleep: '〜5', mood: '2', fatigue: '4' },
+{ d: '水', sleep: '5〜6', mood: '2', fatigue: '4' },
+{ d: '木', sleep: '6〜7', mood: '3', fatigue: '3' },
+{ d: '金', sleep: '7〜9', mood: '4', fatigue: '2' },
+{ d: '土', sleep: '7〜9', mood: '4', fatigue: '2' },
+{ d: 'きょう', sleep: '5〜6', mood: '3', fatigue: '3' }
+];
+const isDone = view === 'done';
+return {
+empty: empty,
+rest: rest,
+full: full,
+isDone: isDone,
+isBody: !isDone,
+showDone: full && isDone,
+showBody: full && !isDone,
+showList: !empty && (rest || back || isDone),
+backView: !empty && !rest && back,
+recent: (back
+? [{ t: 'チェックインした', when: 'きょう 7:42' }]
+: [{ t: '5分歩いた', when: 'きょう 12:10' }, { t: '外の光をあびた', when: 'きょう 7:55' }, { t: 'チェックインした', when: 'きょう 7:42' }]
+).map((r, i, arr) => ({ t: r.t, when: r.when, line: i === arr.length - 1 ? 'transparent' : '#DCE1DF' })),
+tabDoneBg: isDone ? '#FFFFFF' : 'transparent',
+tabDoneFg: isDone ? '#1C2321' : '#46514D',
+tabBodyBg: isDone ? 'transparent' : '#FFFFFF',
+tabBodyFg: isDone ? '#46514D' : '#1C2321',
+pickDone: () => this.setState({ view: 'done' }),
+pickBody: () => this.setState({ view: 'body' }),
+week: week,
+bodyRows: bodyRows,
+lk: {
+consult: this.lk('Consult'),
+home: this.lk('HomeTune', (n) => n.home()),
+self: this.lk('Evidence', () => {}),
+pause: this.lk('Pause'),
+insights: this.lk('Insights')
+}
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>ため息呼吸</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@500;700&amp;display=swap">
+<style>
+body{margin:0}
+@keyframes so-breathe{0%{transform:scale(0.55)}30%{transform:scale(0.9)}40%{transform:scale(1)}100%{transform:scale(0.55)}}
+@keyframes so-in{0%,27%{opacity:1}30%,100%{opacity:0}}
+@keyframes so-top{0%,29%{opacity:0}31%,38%{opacity:1}41%,100%{opacity:0}}
+@keyframes so-out{0%,40%{opacity:0}43%,96%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion: reduce){.so-anim{animation:none !important}.so-lab{display:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 52px 24px 28px; display: flex; flex-direction: column; align-items: center; gap: 12px; background: #1B2140; color: #EEF0F8; font-family: 'Zen Kaku Gothic New', sans-serif; word-break: auto-phrase">
+
+<div style="align-self: stretch; display: flex; justify-content: space-between; align-items: center">
+<a href="{{lk.close.href}}" onClick="{{lk.close.on}}" aria-label="閉じる" style="width: 44px; height: 44px; border-radius: 50%; background: #262D52; color: #EEF0F8; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+</a>
+<span style="font-size: 15px; font-weight: 700">ため息呼吸</span>
+<a href="{{lk.consult.href}}" onClick="{{lk.consult.on}}" aria-label="相談する" style="width: 44px; height: 44px; border-radius: 50%; background: #262D52; color: #E8D8A0; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle><path d="M5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"></path></svg>
+</a>
+</div>
+
+<div aria-hidden="true" style="position: relative; width: 260px; height: 260px; margin-top: 24px">
+<div style="position: absolute; inset: 0; border-radius: 50%; border: 1px solid #3A4373"></div>
+<div style="position: absolute; inset: 14%; border-radius: 50%; border: 1px dashed #333B6A"></div>
+<div class="so-anim" style="position: absolute; inset: 0; border-radius: 50%; background: #3B4683; transform: scale(0.75); animation: so-breathe 10s ease-in-out infinite"></div>
+<div style="position: absolute; left: 50%; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: #C9D3EC"></div>
+</div>
+
+<div aria-hidden="true" style="position: relative; width: 100%; height: 36px; margin-top: 12px">
+<span class="so-anim so-lab" style="position: absolute; inset: 0; text-align: center; font-family: 'Zen Maru Gothic', sans-serif; font-size: 24px; font-weight: 700; animation: so-in 10s linear infinite">鼻から吸って</span>
+<span class="so-anim so-lab" style="position: absolute; inset: 0; text-align: center; font-family: 'Zen Maru Gothic', sans-serif; font-size: 24px; font-weight: 700; opacity: 0; animation: so-top 10s linear infinite">もう少し吸い足して</span>
+<span class="so-anim so-lab" style="position: absolute; inset: 0; text-align: center; font-family: 'Zen Maru Gothic', sans-serif; font-size: 24px; font-weight: 700; opacity: 0; animation: so-out 10s linear infinite">口からゆっくり吐く</span>
+</div>
+
+<p style="margin: 0; max-width: 310px; text-align: center; font-size: 15px; line-height: 1.75; color: #C9CEE6">鼻から3秒吸って、1秒吸い足し、口から6秒かけて吐きます。</p>
+
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px">
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 20px; font-weight: 700; color: #E8D8A0">残り 3:40</span>
+<div role="img" aria-label="5分のうち1分20秒が経過" style="width: 220px; height: 6px; border-radius: 999px; background: #2A3260; overflow: hidden"><div style="width: 27%; height: 100%; border-radius: 999px; background: #E8D8A0"></div></div>
+</div>
+
+<div style="align-self: stretch; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 4px 0">
+<span style="display: flex; flex-direction: column; gap: 1px">
+<span style="font-size: 14.5px; font-weight: 700">音声と振動で案内</span>
+<span style="font-size: 12px; color: #AEB5D3">画面を見なくても続けられます</span>
+</span>
+<button type="button" role="switch" aria-checked="{{voiceOn}}" aria-label="音声と振動で案内" onClick="{{toggleVoice}}" style="flex: none; width: 52px; height: 44px; padding: 0; border: none; background: transparent; cursor: pointer; display: flex; align-items: center">
+<span style="width: 48px; height: 28px; box-sizing: border-box; border-radius: 999px; padding: 3px; background: {{voiceTrack}}; display: flex; justify-content: {{voiceJustify}}"><span style="width: 22px; height: 22px; border-radius: 50%; background: #1B2140"></span></span>
+</button>
+</div>
+
+<p style="margin: auto 0 0; max-width: 320px; text-align: center; font-size: 12.5px; line-height: 1.7; color: #AEB5D3">研究では、1日5分を1か月続けた健康な学生で、気分が改善しました（予備的な研究）。</p>
+
+<a href="{{lk.end.href}}" onClick="{{lk.end.on}}" style="align-self: stretch; min-height: 52px; box-sizing: border-box; border-radius: 999px; border: 1px solid #4A5385; color: #EEF0F8; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700">終わる</a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"nav":{"editor":null},"mode":{"editor":null},"days":{"editor":null},"scene":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { voice: true };
+}
+lk(target, fn) {
+const nav = this.props.nav;
+if (!nav) return { href: target + '.dc.html', on: null };
+return {
+href: '#',
+on: (e) => {
+if (e && e.preventDefault) e.preventDefault();
+if (fn) fn(nav); else nav.go(target);
+}
+};
+}
+renderVals() {
+const v = this.state.voice;
+return {
+voiceOn: v,
+voiceTrack: v ? '#E8D8A0' : '#6E77A6',
+voiceJustify: v ? 'flex-end' : 'flex-start',
+toggleVoice: () => this.setState({ voice: !this.state.voice }),
+lk: {
+close: this.lk('HomeTune', (n) => n.back()),
+consult: this.lk('Consult'),
+end: this.lk('HomeTune', (n) => n.back())
+}
+};
+}
+}
+</script>
+</body>
+</html>

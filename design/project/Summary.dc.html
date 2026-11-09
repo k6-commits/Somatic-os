@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>受診用のまとめ</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@500;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 52px 20px 24px; display: flex; flex-direction: column; gap: 12px; background: #F1F3F2; color: #1C2321; font-family: 'Zen Kaku Gothic New', sans-serif; word-break: auto-phrase">
+
+<div style="display: flex; justify-content: space-between; align-items: center">
+<a href="{{lk.back.href}}" onClick="{{lk.back.on}}" aria-label="戻る" style="width: 44px; height: 44px; box-sizing: border-box; border-radius: 50%; background: #FFFFFF; border: 1px solid #DCE1DF; color: #1C2321; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M15 6l-6 6 6 6"></path></svg>
+</a>
+<span style="font-size: 16px; font-weight: 700">受診用のまとめ</span>
+<span aria-hidden="true" style="width: 44px"></span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.4">送る前に、中身を<br>確認してください</h1>
+<p style="margin: 0; font-size: 13.5px; color: #46514D">主治医との話のきっかけに使うまとめです。</p>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 22px; padding: 14px 16px; display: flex; flex-direction: column">
+<div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 6px">
+<span style="font-size: 14.5px; font-weight: 700">10月26日〜11月8日（2週間）</span>
+<span style="padding: 2px 8px; border-radius: 6px; background: #E3E7E5; font-size: 11.5px; font-weight: 700; color: #46514D">サンプル表示</span>
+</div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid #EEF1EF"><span style="font-size: 13.5px; color: #46514D">睡眠</span><span style="font-size: 14px; font-weight: 700; text-align: right">平均6.1時間（5時間未満が3日）</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid #EEF1EF"><span style="font-size: 13.5px; color: #46514D">けさの気分</span><span style="font-size: 14px; font-weight: 700; text-align: right">平均2.8（2以下が5日）</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid #EEF1EF"><span style="font-size: 13.5px; color: #46514D">からだの疲れ</span><span style="font-size: 14px; font-weight: 700; text-align: right">平均3.3</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid #EEF1EF"><span style="font-size: 13.5px; color: #46514D">日曜の2つの質問</span><span style="font-size: 14px; font-weight: 700; text-align: right">合計4点（目安は3点以上）</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid #EEF1EF"><span style="font-size: 13.5px; color: #46514D">まもる日</span><span style="font-size: 14px; font-weight: 700; text-align: right">2日</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid #EEF1EF"><span style="font-size: 13.5px; color: #46514D">歩き</span><span style="font-size: 14px; font-weight: 700; text-align: right">週平均58分</span></div>
+<span style="font-size: 12px; color: #56615D; padding-top: 6px">気分と疲れは1〜5の5段階です。診断ではありません。</span>
+</div>
+
+<button type="button" role="checkbox" aria-checked="{{confirmed}}" onClick="{{toggle}}" style="min-height: 48px; box-sizing: border-box; padding: 8px 4px; border: none; background: transparent; color: #1C2321; font-family: inherit; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 12px">
+<span aria-hidden="true" style="flex: none; width: 26px; height: 26px; box-sizing: border-box; border-radius: 8px; border: 2px solid {{boxBd}}; background: {{box}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{confirmed}}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="17" height="17" style="fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
+</span>
+<span style="font-size: 15px; font-weight: 700">中身を確認しました</span>
+</button>
+
+<div style="display: flex; gap: 10px">
+<button type="button" aria-disabled="{{notConfirmed}}" style="flex: 1; min-height: 48px; border-radius: 999px; border: none; background: {{actBg}}; color: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer">共有する</button>
+<button type="button" aria-disabled="{{notConfirmed}}" style="flex: 1; min-height: 48px; border-radius: 999px; border: 1.5px solid {{outBd}}; background: transparent; color: {{outFg}}; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer">印刷・PDF</button>
+</div>
+
+<p style="margin: auto 0 0; text-align: center; font-size: 12.5px; line-height: 1.6; color: #56615D">送り先はあなたが選びます。アプリから自動では送りません。</p>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"nav":{"editor":null},"mode":{"editor":null},"days":{"editor":null},"scene":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { confirmed: false };
+}
+lk(target, fn) {
+const nav = this.props.nav;
+if (!nav) return { href: target + '.dc.html', on: null };
+return {
+href: '#',
+on: (e) => {
+if (e && e.preventDefault) e.preventDefault();
+if (fn) fn(nav); else nav.go(target);
+}
+};
+}
+renderVals() {
+const c = this.state.confirmed;
+return {
+confirmed: c,
+notConfirmed: !c,
+toggle: () => this.setState({ confirmed: !this.state.confirmed }),
+box: c ? '#34407A' : '#FFFFFF',
+boxBd: c ? '#34407A' : '#7A8581',
+actBg: c ? '#34407A' : '#A9B2AE',
+outBd: c ? '#34407A' : '#A9B2AE',
+outFg: c ? '#34407A' : '#6F7A76',
+lk: { back: this.lk('Consult', (n) => n.back()) }
+};
+}
+}
+</script>
+</body>
+</html>

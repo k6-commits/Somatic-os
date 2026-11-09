@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>状態を変える</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@500;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; background: rgba(20, 24, 40, 0.5); color: #1C2321; font-family: 'Zen Kaku Gothic New', sans-serif; word-break: auto-phrase">
+
+<a href="{{lk.close.href}}" onClick="{{lk.close.on}}" aria-label="閉じる" style="position: absolute; inset: 0"></a>
+
+<div role="dialog" aria-modal="true" aria-labelledby="sheet-title" style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; padding: 12px 20px 32px; border-radius: 28px 28px 0 0; background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
+<span aria-hidden="true" style="align-self: center; width: 40px; height: 4px; border-radius: 999px; background: #C3CAC7"></span>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 id="sheet-title" style="margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-size: 21px; font-weight: 700">きょうの状態を変える</h2>
+<p style="margin: 0; font-size: 13.5px; color: #46514D">変えても、きょうの記録はそのままです。</p>
+</div>
+<sc-for list="{{opts}}" as="o" hint-placeholder-count="3">
+<a href="{{o.href}}" onClick="{{o.on}}" aria-current="{{o.current}}" style="min-height: 64px; box-sizing: border-box; padding: 10px 14px; border-radius: 18px; background: {{o.bg}}; color: {{o.fg}}; text-decoration: none; display: flex; align-items: center; gap: 12px">
+<span aria-hidden="true" style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: {{o.iconBg}}; color: {{o.iconFg}}; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{o.isRest}}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="20" height="20" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg></sc-if>
+<sc-if value="{{o.isTune}}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="20" height="20" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 8h10M8 12h11M4 16h9M10 20h6"></path></svg></sc-if>
+<sc-if value="{{o.isExpand}}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="20" height="20" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"></path></svg></sc-if>
+</span>
+<span style="flex: 1; display: flex; flex-direction: column; gap: 1px">
+<span style="font-size: 17px; font-weight: 700">{{o.name}}</span>
+<span style="font-size: 12.5px; color: {{o.sub}}">{{o.desc}}</span>
+</span>
+<sc-if value="{{o.selected}}" hint-placeholder-val="{{ false }}">
+<span style="flex: none; padding: 3px 10px; border-radius: 999px; background: #FFFFFF; color: #34407A; font-size: 12px; font-weight: 700">いま</span>
+</sc-if>
+</a>
+</sc-for>
+<a href="{{lk.closeBtn.href}}" onClick="{{lk.closeBtn.on}}" style="min-height: 48px; border-radius: 999px; border: 1.5px solid #34407A; color: #34407A; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">閉じる</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"nav":{"editor":null},"mode":{"editor":null},"days":{"editor":null},"scene":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+lk(target, fn) {
+const nav = this.props.nav;
+if (!nav) return { href: target + '.dc.html', on: null };
+return {
+href: '#',
+on: (e) => {
+if (e && e.preventDefault) e.preventDefault();
+if (fn) fn(nav); else nav.go(target);
+}
+};
+}
+renderVals() {
+const cur = this.props.mode || 'tune';
+const defs = [
+{ m: 'rest', file: 'HomeRest', name: 'まもる日', desc: '★だけにします', bg: '#1B2140', fg: '#EEF0F8', sub: '#C9CEE6', iconBg: '#2A3260', iconFg: '#E8D8A0' },
+{ m: 'tune', file: 'HomeTune', name: 'ととのえる日', desc: '毎日のメニューを出します', bg: '#C9D3EC', fg: '#1C2321', sub: '#2C3550', iconBg: '#E4E9F6', iconFg: '#34407A' },
+{ m: 'expand', file: 'HomeExpand', name: 'ひろげる日', desc: 'ふりかえりも開きます', bg: '#F0B44C', fg: '#1C2321', sub: '#3D2E0A', iconBg: '#F6CD7F', iconFg: '#1C2321' }
+];
+const opts = defs.map((d) => {
+const link = this.lk(d.file, (n) => n.setMode(d.m));
+return Object.assign({}, d, {
+href: link.href,
+on: link.on,
+selected: d.m === cur,
+current: d.m === cur ? 'true' : undefined,
+isRest: d.m === 'rest',
+isTune: d.m === 'tune',
+isExpand: d.m === 'expand'
+});
+});
+return {
+opts: opts,
+lk: {
+close: this.lk('HomeTune', (n) => n.closeSheet()),
+closeBtn: this.lk('HomeTune', (n) => n.closeSheet())
+}
+};
+}
+}
+</script>
+</body>
+</html>

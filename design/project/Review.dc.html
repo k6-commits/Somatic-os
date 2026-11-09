@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>週1のふりかえり</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@500;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 52px 20px 24px; display: flex; flex-direction: column; gap: 12px; background: #F1F3F2; color: #1C2321; font-family: 'Zen Kaku Gothic New', sans-serif; word-break: auto-phrase">
+
+<div style="display: flex; justify-content: space-between; align-items: center">
+<a href="{{lk.close.href}}" onClick="{{lk.close.on}}" aria-label="閉じる" style="width: 44px; height: 44px; box-sizing: border-box; border-radius: 50%; background: #FFFFFF; border: 1px solid #DCE1DF; color: #1C2321; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+</a>
+<span style="font-size: 15px; font-weight: 700; color: #34407A">週1のふりかえり</span>
+<a href="{{lk.consult.href}}" onClick="{{lk.consult.on}}" aria-label="相談する" style="width: 44px; height: 44px; box-sizing: border-box; border-radius: 50%; background: #FFFFFF; border: 1px solid #DCE1DF; color: #34407A; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle><path d="M5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"></path></svg>
+</a>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div aria-hidden="true" style="display: flex; gap: 4px">
+<sc-for list="{{segs}}" as="g" hint-placeholder-count="5"><span style="flex: 1; height: 6px; border-radius: 999px; background: {{g.bg}}"></span></sc-for>
+</div>
+<span style="font-size: 12.5px; color: #56615D">{{stepLabel}}</span>
+</div>
+
+<sc-if value="{{s0}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h1 style="margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.45">今週できたことを、<br>3つ選んでください</h1>
+<p style="margin: 0; font-size: 13.5px; color: #46514D">記録から選びます。3つまで選べます。</p>
+<div role="group" aria-label="今週できたこと" style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{wins}}" as="w" hint-placeholder-count="6">
+<button type="button" role="checkbox" aria-checked="{{w.checked}}" aria-disabled="{{w.disabled}}" onClick="{{w.toggle}}" style="min-height: 48px; box-sizing: border-box; padding: 8px 14px; border-radius: 14px; border: 1px solid {{w.bd}}; background: {{w.bg}}; color: {{w.fg}}; font-family: inherit; font-size: 15px; font-weight: 700; text-align: left; cursor: pointer">{{w.label}}</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{s1}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h1 style="margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.45">気分が高めの日と、<br>低めの日の違いは？</h1>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 4px; font-size: 13.5px">
+<span style="font-size: 12.5px; font-weight: 700; color: #34407A">高めの日（4以上・2日）</span>
+<span>睡眠 7.6時間</span>
+<span>歩き 1日22分</span>
+<span>人と話した 2日</span>
+</div>
+<div style="background: #E3E8F4; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 4px; font-size: 13.5px">
+<span style="font-size: 12.5px; font-weight: 700; color: #34407A">低めの日（2以下・2日）</span>
+<span>睡眠 5.0時間</span>
+<span>歩き 1日4分</span>
+<span>人と話した 0日</span>
+</div>
+</div>
+<span style="align-self: flex-start; padding: 2px 8px; border-radius: 6px; background: #E3E7E5; font-size: 11.5px; font-weight: 700; color: #46514D">サンプル表示</span>
+<label for="r-note" style="font-size: 14px; font-weight: 700">気づいたこと（任意）</label>
+<textarea id="r-note" rows="3" value="{{note}}" onChange="{{onNote}}" placeholder="例：眠れた日は、外に出やすかった" style="box-sizing: border-box; width: 100%; padding: 10px 12px; border-radius: 12px; border: 1px solid #8A9490; font-family: inherit; font-size: 15px; line-height: 1.6; color: #1C2321; resize: none"></textarea>
+</div>
+</sc-if>
+
+<sc-if value="{{s2}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h1 style="margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.45">「自分はだめだ」と<br>感じたとき、からだは？</h1>
+<p style="margin: 0; font-size: 13.5px; color: #46514D">当てはまるものを全部</p>
+<div role="group" aria-label="そのときのからだ" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{bodies}}" as="b" hint-placeholder-count="6">
+<button type="button" aria-pressed="{{b.pressed}}" onClick="{{b.toggle}}" style="min-height: 44px; box-sizing: border-box; padding: 8px 10px; border-radius: 14px; border: 1px solid {{b.bd}}; background: {{b.bg}}; color: {{b.fg}}; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer">{{b.label}}</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{s3}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h1 id="q-fit" style="margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.45">今週の事実から見て、<br>「自分はだめだ」は<br>どのくらい当たっていた？</h1>
+<div role="group" aria-labelledby="q-fit" style="display: flex; gap: 6px">
+<sc-for list="{{scale}}" as="o" hint-placeholder-count="5">
+<button type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="flex: 1; min-width: 0; min-height: 44px; padding: 0 2px; border-radius: 12px; border: 1px solid {{o.bd}}; background: {{o.bg}}; color: {{o.fg}}; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer">{{o.label}}</button>
+</sc-for>
+</div>
+<sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
+<p aria-live="polite" style="margin: 0; padding: 12px 14px; border-radius: 14px; background: #FBEFD6; font-size: 14px; line-height: 1.65; color: #3D2E0A">{{message}}</p>
+</sc-if>
+<sc-if value="{{showConsult}}" hint-placeholder-val="{{ false }}">
+<a href="{{lk.consultMsg.href}}" onClick="{{lk.consultMsg.on}}" style="align-self: flex-start; min-height: 44px; box-sizing: border-box; padding: 0 18px; border-radius: 999px; border: 1.5px solid #34407A; color: #34407A; text-decoration: none; display: flex; align-items: center; font-size: 14px; font-weight: 700">相談先を見る</a>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{s4}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h1 style="margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.45">来週、1つだけ<br>増やすことは？</h1>
+<div role="group" aria-label="来週増やすこと" style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{plans}}" as="p" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{p.pressed}}" onClick="{{p.pick}}" style="min-height: 48px; box-sizing: border-box; padding: 8px 14px; border-radius: 14px; border: 1px solid {{p.bd}}; background: {{p.bg}}; color: {{p.fg}}; font-family: inherit; font-size: 15px; font-weight: 700; text-align: left; cursor: pointer">{{p.label}}</button>
+</sc-for>
+</div>
+<sc-if value="{{showCustom}}" hint-placeholder-val="{{ false }}">
+<label for="r-custom" style="font-size: 14px; font-weight: 700">増やすこと</label>
+<input id="r-custom" type="text" value="{{custom}}" onChange="{{onCustom}}" placeholder="例：昼休みに外へ出る" style="min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 12px; border: 1px solid #8A9490; font-family: inherit; font-size: 15px; color: #1C2321">
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{s5}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<h1 style="margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.4">保存しました</h1>
+<p style="margin: 0; font-size: 14.5px; color: #46514D">来週の日曜日に、また開きます。</p>
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12.5px; font-weight: 700; color: #34407A">来週増やすこと</span>
+<span style="font-size: 15.5px; font-weight: 700">{{planText}}</span>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12.5px; font-weight: 700; color: #34407A">選んだ、今週のできた</span>
+<span style="font-size: 14.5px; line-height: 1.6">{{winsText}}</span>
+</div>
+</div>
+</sc-if>
+
+<div style="margin-top: auto; display: flex; gap: 10px">
+<sc-if value="{{canPrev}}" hint-placeholder-val="{{ false }}">
+<button type="button" onClick="{{prev}}" style="flex: none; min-height: 52px; padding: 0 22px; border-radius: 999px; border: 1.5px solid #34407A; background: transparent; color: #34407A; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer">戻る</button>
+</sc-if>
+<sc-if value="{{showNext}}" hint-placeholder-val="{{ true }}">
+<button type="button" onClick="{{next}}" style="flex: 1; min-height: 52px; border-radius: 999px; border: none; background: #34407A; color: #FFFFFF; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer">{{nextLabel}}</button>
+</sc-if>
+<sc-if value="{{s5}}" hint-placeholder-val="{{ false }}">
+<a href="{{lk.home.href}}" onClick="{{lk.home.on}}" style="flex: 1; min-height: 52px; border-radius: 999px; background: #34407A; color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700">ホームへ</a>
+</sc-if>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"nav":{"editor":null},"mode":{"editor":null},"days":{"editor":null},"scene":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { step: 0, wins: {}, note: '', bodies: {}, answer: null, plan: null, custom: '' };
+}
+lk(target, fn) {
+const nav = this.props.nav;
+if (!nav) return { href: target + '.dc.html', on: null };
+return {
+href: '#',
+on: (e) => {
+if (e && e.preventDefault) e.preventDefault();
+if (fn) fn(nav); else nav.go(target);
+}
+};
+}
+renderVals() {
+const s = this.state;
+const step = s.step;
+const sel = (on) => ({ bg: on ? '#34407A' : '#FFFFFF', fg: on ? '#FFFFFF' : '#1C2321', bd: on ? '#34407A' : '#8A9490' });
+const winDefs = [
+{ id: 'w1', label: '外の光をあびた' },
+{ id: 'w2', label: '5分歩いた' },
+{ id: 'w3', label: '洗濯をした' },
+{ id: 'w4', label: '友人にメッセージを返した' },
+{ id: 'w5', label: '夜、布団を出て戻れた' },
+{ id: 'w6', label: 'ため息呼吸をした' }
+];
+const picked = winDefs.filter((d) => s.wins[d.id]);
+const full = picked.length >= 3;
+const wins = winDefs.map((d) => {
+const on = !!s.wins[d.id];
+const dis = !on && full;
+const c = sel(on);
+return {
+label: d.label,
+checked: on,
+disabled: dis,
+bg: c.bg,
+fg: dis ? '#7A8581' : c.fg,
+bd: c.bd,
+toggle: () => {
+if (dis) return;
+const next = Object.assign({}, this.state.wins);
+next[d.id] = !on;
+this.setState({ wins: next });
+}
+};
+});
+const bodyDefs = [
+{ id: 'b1', label: '眠い' },
+{ id: 'b2', label: '疲れている' },
+{ id: 'b3', label: 'おなかが空いている' },
+{ id: 'b4', label: '体調がよくない' },
+{ id: 'b5', label: '人と話していない' },
+{ id: 'b6', label: '特になし' }
+];
+const bodies = bodyDefs.map((d) => {
+const on = !!s.bodies[d.id];
+return Object.assign({ label: d.label, pressed: on, toggle: () => {
+const next = Object.assign({}, this.state.bodies);
+next[d.id] = !on;
+this.setState({ bodies: next });
+} }, sel(on));
+});
+const scaleLabels = ['ぜんぜん', 'あまり', '半分', 'わりと', 'とても'];
+const scale = scaleLabels.map((label, i) => Object.assign({ label: label, pressed: s.answer === i, pick: () => this.setState({ answer: i }) }, sel(s.answer === i)));
+let message = '';
+if (s.answer !== null) {
+if (s.answer <= 1) message = '事実は、予測ほど悪くなかったようです。この気づきを、来週の自分に残しておきましょう。';
+else if (s.answer === 2) message = '半分くらい、ですね。どんなときに当たっていたかは、きろくで見返せます。';
+else message = 'そう感じる1週間だったんですね。ひとりで抱えず、話せる人や相談先も使ってください。';
+}
+const planDefs = [
+{ id: 'p1', label: '歩く日を1日増やす' },
+{ id: 'p2', label: '寝る時刻を15分早める' },
+{ id: 'p3', label: 'だれかに1通連絡する' },
+{ id: 'p4', label: '自分で決める' }
+];
+const plans = planDefs.map((d) => Object.assign({ label: d.label, pressed: s.plan === d.id, pick: () => this.setState({ plan: d.id }) }, sel(s.plan === d.id)));
+const planObj = planDefs.filter((d) => d.id === s.plan)[0];
+let planText = 'まだ決めていません';
+if (s.plan === 'p4') planText = s.custom ? s.custom : '自分で決める';
+else if (planObj) planText = planObj.label;
+return {
+s0: step === 0,
+s1: step === 1,
+s2: step === 2,
+s3: step === 3,
+s4: step === 4,
+s5: step === 5,
+segs: [0, 1, 2, 3, 4].map((i) => ({ k: i, bg: i <= step ? '#34407A' : '#C3CAC7' })),
+stepLabel: step < 5 ? (step + 1) + ' / 5' : '完了',
+wins: wins,
+bodies: bodies,
+scale: scale,
+plans: plans,
+hasAnswer: s.answer !== null,
+message: message,
+showConsult: s.answer !== null && s.answer >= 3,
+showCustom: s.plan === 'p4',
+note: s.note,
+custom: s.custom,
+onNote: (e) => this.setState({ note: e.target.value }),
+onCustom: (e) => this.setState({ custom: e.target.value }),
+canPrev: step > 0 && step < 5,
+showNext: step < 5,
+nextLabel: step === 4 ? '保存する' : '次へ',
+prev: () => this.setState({ step: Math.max(0, this.state.step - 1) }),
+next: () => this.setState({ step: Math.min(5, this.state.step + 1) }),
+planText: planText,
+winsText: picked.length ? picked.map((d) => d.label).join('、') : 'まだ選んでいません',
+lk: {
+close: this.lk('HomeExpand', (n) => n.back()),
+consult: this.lk('Consult'),
+consultMsg: this.lk('Consult'),
+home: this.lk('HomeExpand', (n) => n.home())
+}
+};
+}
+}
+</script>
+</body>
+</html>
