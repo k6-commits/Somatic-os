@@ -131,6 +131,8 @@ const run = async () => {
     await shot(page, '02-home-tune');
     check('ホーム: targets ≥ 44px', (await smallTargets(page)).length === 0, (await smallTargets(page)).join('; '));
 
+    // Closing the sheet steps the browser history back; let that finish before reloading.
+    await page.waitForFunction(() => !(history.state && history.state.somatic));
     await page.reload({ waitUntil: 'networkidle' });
     check('records survive a reload', (await page.locator('[role="checkbox"]', { hasText: '1時間以内に外の光をあびる' }).getAttribute('aria-checked')) === 'true' && (await page.locator('.walk-min').innerText()) === '10分');
 

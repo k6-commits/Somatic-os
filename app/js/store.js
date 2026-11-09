@@ -67,6 +67,20 @@ function normalizeDay(raw) {
   return day;
 }
 
+function normalizeReview(raw) {
+  const answer = num(raw.answer);
+  return {
+    wins: arr(raw.wins).filter((w) => typeof w === 'string'),
+    note: str(raw.note) || '',
+    bodies: arr(raw.bodies).filter((b) => typeof b === 'string'),
+    answer: answer !== null && Number.isInteger(answer) && answer >= 0 && answer <= 4 ? answer : null,
+    plan: str(raw.plan),
+    custom: str(raw.custom) || '',
+    planText: str(raw.planText) || '',
+    at: str(raw.at),
+  };
+}
+
 /** Fill in anything missing or malformed so the screens can trust the shape. */
 export function normalize(raw) {
   const data = emptyData();
@@ -97,7 +111,7 @@ export function normalize(raw) {
     }
   }
   if (isObj(raw.reviews)) {
-    for (const [key, r] of Object.entries(raw.reviews)) if (DAY_KEY.test(key) && isObj(r)) data.reviews[key] = r;
+    for (const [key, r] of Object.entries(raw.reviews)) if (DAY_KEY.test(key) && isObj(r)) data.reviews[key] = normalizeReview(r);
   }
   return data;
 }

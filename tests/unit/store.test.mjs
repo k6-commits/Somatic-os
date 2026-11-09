@@ -107,6 +107,19 @@ test('load fills in missing fields and drops malformed ones', () => {
   assert.deepEqual(data.days['2026-11-09'].walks, [{ at: T, min: 10 }]);
 });
 
+test('a malformed weekly review in an imported file is cleaned up', () => {
+  const file = JSON.stringify({
+    app: 'somatic-os',
+    data: { v: 1, days: {}, reviews: { '2026-11-09': { wins: 'not a list', note: 5, bodies: ['tired', 3], answer: 9, plan: 'p1' } } },
+  });
+  const r = parseImport(file).reviews['2026-11-09'];
+  assert.deepEqual(r.wins, []);
+  assert.equal(r.note, '');
+  assert.deepEqual(r.bodies, ['tired']);
+  assert.equal(r.answer, null);
+  assert.equal(r.plan, 'p1');
+});
+
 test('export and import round-trip; other files are refused', () => {
   const d = checkIn(emptyData(), '2026-11-09', { mode: 'tune', mood: 3 }, T);
   assert.deepEqual(parseImport(exportText(d, T)), d);
