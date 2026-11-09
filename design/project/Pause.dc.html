@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>つらいとき</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@500;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 52px 20px 24px; display: flex; flex-direction: column; gap: 12px; background: #F1F3F2; color: #1C2321; font-family: 'Zen Kaku Gothic New', sans-serif; word-break: auto-phrase">
+
+<div style="display: flex; justify-content: space-between; align-items: center">
+<a href="{{lk.close.href}}" onClick="{{lk.close.on}}" aria-label="閉じる" style="width: 44px; height: 44px; box-sizing: border-box; border-radius: 50%; background: #FFFFFF; border: 1px solid #DCE1DF; color: #1C2321; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+</a>
+<span style="font-size: 15px; font-weight: 700; color: #34407A">つらいとき</span>
+<a href="{{lk.consult.href}}" onClick="{{lk.consult.on}}" aria-label="相談する" style="width: 44px; height: 44px; box-sizing: border-box; border-radius: 50%; background: #FFFFFF; border: 1px solid #DCE1DF; color: #34407A; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle><path d="M5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"></path></svg>
+</a>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.4">つらい考えが、<br>浮かんだんですね。</h1>
+<p style="margin: 0; font-size: 15px; line-height: 1.7; color: #46514D">その考えは、いまのからだの状態に左右されているかもしれません。先にからだを確かめましょう。</p>
+</div>
+
+<a href="{{lk.crisis.href}}" onClick="{{lk.crisis.on}}" style="min-height: 52px; box-sizing: border-box; padding: 0 14px; border-radius: 16px; border: 1.5px solid #34407A; background: #FFFFFF; color: #1C2321; text-decoration: none; display: flex; align-items: center; gap: 12px">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="flex: none; fill: none; stroke: #34407A; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle><path d="M5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"></path></svg>
+<span style="flex: 1; font-size: 15px; font-weight: 700">消えたい・死にたい考えがある</span>
+<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" style="flex: none; fill: none; stroke: #34407A; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M9 6l6 6-6 6"></path></svg>
+</a>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<h2 id="body-q" style="margin: 0; font-size: 16px; font-weight: 700">いまのからだは？</h2>
+<span style="font-size: 13px; color: #56615D">当てはまるものを選ぶ</span>
+</div>
+<div role="group" aria-labelledby="body-q" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="6">
+<button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.toggle}}" style="min-height: 44px; box-sizing: border-box; padding: 8px 12px; border-radius: 14px; border: 1px solid {{c.bd}}; background: {{c.bg}}; color: {{c.fg}}; font-family: inherit; font-size: 14.5px; font-weight: 700; text-align: center; cursor: pointer">{{c.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">からだに先に手当てを</h2>
+<sc-if value="{{noneSelected}}" hint-placeholder-val="{{ true }}">
+<p style="margin: 0; font-size: 13px; color: #56615D">当てはまるものを選ぶと、手当ての案が増えます。</p>
+</sc-if>
+<sc-for list="{{suggestions}}" as="s" hint-placeholder-count="1">
+<sc-if value="{{s.isLink}}" hint-placeholder-val="{{ true }}">
+<a href="{{s.href}}" onClick="{{s.on}}" style="min-height: 58px; box-sizing: border-box; padding: 10px 14px; border-radius: 18px; background: #FFFFFF; border: 1px solid #DCE1DF; color: #1C2321; text-decoration: none; display: flex; align-items: center; gap: 12px">
+<span aria-hidden="true" style="flex: none; width: 34px; height: 34px; border-radius: 50%; background: #E3E8F4; color: #34407A; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="18" height="18" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14zM5 19l7-7"></path></svg></span>
+<span style="flex: 1; display: flex; flex-direction: column; gap: 1px">
+<span style="font-size: 15.5px; font-weight: 700">{{s.label}}</span>
+<span style="font-size: 12.5px; color: #56615D">{{s.sub}}</span>
+</span>
+<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" style="flex: none; fill: none; stroke: #56615D; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M9 6l6 6-6 6"></path></svg>
+</a>
+</sc-if>
+<sc-if value="{{s.isCheck}}" hint-placeholder-val="{{ false }}">
+<button type="button" role="checkbox" aria-checked="{{s.checked}}" onClick="{{s.toggle}}" style="width: 100%; min-height: 58px; box-sizing: border-box; padding: 10px 14px; border-radius: 18px; background: #FFFFFF; border: 1px solid #DCE1DF; color: #1C2321; font-family: inherit; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 12px">
+<span aria-hidden="true" style="flex: none; width: 26px; height: 26px; box-sizing: border-box; border-radius: 8px; border: 2px solid {{s.boxBd}}; background: {{s.box}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{s.checked}}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="17" height="17" style="fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
+</span>
+<span style="flex: 1; display: flex; flex-direction: column; gap: 1px">
+<span style="font-size: 15.5px; font-weight: 700">{{s.label}}</span>
+<span style="font-size: 12.5px; color: #56615D">{{s.sub}}</span>
+</span>
+</button>
+</sc-if>
+</sc-for>
+</div>
+
+<a href="{{lk.cta.href}}" onClick="{{lk.cta.on}}" style="margin-top: auto; min-height: 52px; border-radius: 999px; background: #34407A; color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700">{{ctaLabel}}</a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"nav":{"editor":null},"mode":{"editor":null},"days":{"editor":null},"scene":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { on: {}, done: {} };
+}
+lk(target, fn) {
+const nav = this.props.nav;
+if (!nav) return { href: target + '.dc.html', on: null };
+return {
+href: '#',
+on: (e) => {
+if (e && e.preventDefault) e.preventDefault();
+if (fn) fn(nav); else nav.go(target);
+}
+};
+}
+renderVals() {
+const on = this.state.on;
+const doneMap = this.state.done;
+const defs = [
+{ id: 'sleepy', label: '眠い' },
+{ id: 'hungry', label: 'おなかが空いている' },
+{ id: 'tired', label: '疲れている' },
+{ id: 'unwell', label: '体調がよくない' },
+{ id: 'lonely', label: '人と話していない' },
+{ id: 'temp', label: '寒い・暑い' }
+];
+const chips = defs.map((d) => {
+const sel = !!on[d.id];
+return {
+label: d.label,
+pressed: sel,
+bg: sel ? '#34407A' : '#FFFFFF',
+fg: sel ? '#FFFFFF' : '#1C2321',
+bd: sel ? '#34407A' : '#8A9490',
+toggle: () => {
+const next = Object.assign({}, on);
+next[d.id] = !sel;
+this.setState({ on: next });
+}
+};
+});
+const picks = [];
+if (on.sleepy || on.tired) picks.push({ id: 'eyes', kind: 'check', label: '5分、目を閉じて座る', sub: '昼寝はせず、夜の眠りを守る' });
+if (on.hungry) picks.push({ id: 'food', kind: 'check', label: '水を1杯のんで、何か食べる', sub: '少しだけでいい' });
+if (on.unwell) picks.push({ id: 'rest', kind: 'mode', label: 'きょうはまもる日に切り替える', sub: 'メニューが★だけになります' });
+if (on.lonely) picks.push({ id: 'msg', kind: 'check', label: 'だれかに一言メッセージを送る', sub: '返事は待たなくていい' });
+if (on.temp) picks.push({ id: 'temp', kind: 'check', label: '1枚はおる・窓を開ける', sub: 'からだの温度を整える' });
+const list = picks.slice(0, 2);
+list.push({ id: 'breath', kind: 'link', label: 'ため息呼吸（5分）', sub: '途中でやめてもいい' });
+const suggestions = list.map((it) => {
+const checked = !!doneMap[it.id];
+let link = null;
+if (it.kind === 'link') link = this.lk('Breath');
+if (it.kind === 'mode') link = this.lk('HomeRest', (n) => n.setMode('rest'));
+return Object.assign({}, it, {
+isLink: it.kind !== 'check',
+isCheck: it.kind === 'check',
+href: link ? link.href : '#',
+on: link ? link.on : null,
+checked: checked,
+box: checked ? '#34407A' : '#FFFFFF',
+boxBd: checked ? '#34407A' : '#7A8581',
+toggle: () => {
+const next = Object.assign({}, doneMap);
+next[it.id] = !checked;
+this.setState({ done: next });
+}
+});
+});
+const anyDone = suggestions.some((s) => s.checked);
+return {
+chips: chips,
+suggestions: suggestions,
+noneSelected: picks.length === 0,
+ctaLabel: anyDone ? '記録して戻る' : 'ホームに戻る',
+lk: {
+close: this.lk('HomeTune', (n) => n.back()),
+consult: this.lk('Consult'),
+crisis: this.lk('Consult'),
+cta: this.lk('HomeTune', (n) => n.home())
+}
+};
+}
+}
+</script>
+</body>
+</html>

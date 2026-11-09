@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Somatic OS 体験設計</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#34407A}a:hover{color:#1F2858}
+</style>
+</helmet>
+<div style="width: 1440px; height: 2680px; box-sizing: border-box; padding: 80px 96px; display: flex; flex-direction: column; gap: 72px; background: #F1F3F2; color: #1C2321; font-family: 'Zen Kaku Gothic New', sans-serif; word-break: auto-phrase">
+
+<header style="display: flex; flex-direction: column; gap: 14px">
+<p style="margin: 0; font-size: 16px; font-weight: 700; letter-spacing: 0.14em; color: #34407A">体験設計</p>
+<h1 style="margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 54px; line-height: 1.35">つらい日ほど、画面は静かになる</h1>
+<p style="margin: 0; max-width: 900px; font-size: 20px; line-height: 1.85; color: #46514D">毎朝15秒、からだの状態を3つから選ぶ。それだけで、その日のアプリの形が決まります。迷ったときは「まもる日」を選んでいい、と画面で伝えます。</p>
+</header>
+
+<section style="display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0; font-size: 16px; font-weight: 700; letter-spacing: 0.14em; color: #34407A">3つのモード</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto auto; column-gap: 24px; row-gap: 0">
+<div style="grid-row: span 2; display: grid; grid-template-rows: subgrid; row-gap: 0; border-radius: 24px; overflow: hidden; background: #FFFFFF; border: 1px solid #DCE1DF">
+<div style="background: #1B2140; color: #EEF0F8; padding: 24px 28px; display: flex; flex-direction: column; gap: 10px">
+<svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true" style="fill: none; stroke: #E8D8A0; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 26px; font-weight: 700">まもる日</span>
+<span style="font-size: 15px; line-height: 1.7; color: #C9CEE6">起きるのがつらい・何も楽しくない・考えがまとまらない日</span>
+</div>
+<div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 1.75">
+<span style="font-size: 14px; font-weight: 700; color: #34407A">表示するもの</span>
+<span>★の項目だけ（光・水と食事・5分の外出）、つらいとき、相談先</span>
+<span style="font-size: 14px; font-weight: 700; color: #34407A; margin-top: 6px">出さないもの</span>
+<span>ふりかえり、目標、数やグラフ。きろくは「できた」の一覧だけ</span>
+<span style="font-size: 14px; font-weight: 700; color: #34407A; margin-top: 6px">画面</span>
+<span>やわらかい色。文字を大きく、項目は最少に</span>
+</div>
+</div>
+<div style="grid-row: span 2; display: grid; grid-template-rows: subgrid; row-gap: 0; border-radius: 24px; overflow: hidden; background: #FFFFFF; border: 1px solid #DCE1DF">
+<div style="background: #C9D3EC; color: #1C2321; padding: 24px 28px; display: flex; flex-direction: column; gap: 10px">
+<svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"><path d="M5 8h10M8 12h11M4 16h9M10 20h6"></path></svg>
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 26px; font-weight: 700">ととのえる日</span>
+<span style="font-size: 15px; line-height: 1.7; color: #2C3550">動けるけれど、からだが重い・気分が沈みがちな日</span>
+</div>
+<div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 1.75">
+<span style="font-size: 14px; font-weight: 700; color: #34407A">表示するもの</span>
+<span>朝・日中・夜のチェックリスト、4週間の歩くプラン、つらいとき</span>
+<span style="font-size: 14px; font-weight: 700; color: #34407A; margin-top: 6px">出さないもの</span>
+<span>新しい目標の設定、ふりかえり</span>
+<span style="font-size: 14px; font-weight: 700; color: #34407A; margin-top: 6px">画面</span>
+<span>朝もやの色。いまの時間帯の項目だけを開く</span>
+</div>
+</div>
+<div style="grid-row: span 2; display: grid; grid-template-rows: subgrid; row-gap: 0; border-radius: 24px; overflow: hidden; background: #FFFFFF; border: 1px solid #DCE1DF">
+<div style="background: #F0B44C; color: #1C2321; padding: 24px 28px; display: flex; flex-direction: column; gap: 10px">
+<svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"></path></svg>
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 26px; font-weight: 700">ひろげる日</span>
+<span style="font-size: 15px; line-height: 1.7; color: #3D2E0A">ふだんどおり動ける日</span>
+</div>
+<div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 1.75">
+<span style="font-size: 14px; font-weight: 700; color: #34407A">表示するもの</span>
+<span>ととのえる日のすべて、週1のふりかえり、わかったこと</span>
+<span style="font-size: 14px; font-weight: 700; color: #34407A; margin-top: 6px">出さないもの</span>
+<span>睡眠を削る提案。調子がいい日ほど、睡眠は守る</span>
+<span style="font-size: 14px; font-weight: 700; color: #34407A; margin-top: 6px">画面</span>
+<span>日なたの色。体験から意味を更新する入口を出す</span>
+</div>
+</div>
+</div>
+<p style="margin: 0; display: flex; align-items: center; gap: 10px; font-size: 15.5px; line-height: 1.7; color: #46514D"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="flex: none; fill: none; stroke: #34407A; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>画面の暗さは、モードではなく時刻で決めます。22時を過ぎると、どのモードでも暗い「夜の画面」になり、記録は求めません。</p>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0; font-size: 16px; font-weight: 700; letter-spacing: 0.14em; color: #34407A">1日の流れ</p>
+<ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px">
+<li style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+<span style="align-self: flex-start; padding: 4px 12px; border-radius: 999px; background: #E3E8F4; font-size: 13px; font-weight: 700; color: #34407A">1 朝</span>
+<span style="font-size: 18px; font-weight: 700">チェックイン</span>
+<span style="font-size: 14px; line-height: 1.75; color: #46514D">睡眠・気分・疲れを入れ、3つの日から選ぶ。日曜は2つの質問も。</span>
+</li>
+<li style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+<span style="align-self: flex-start; padding: 4px 12px; border-radius: 999px; background: #E3E8F4; font-size: 13px; font-weight: 700; color: #34407A">2 日中</span>
+<span style="font-size: 18px; font-weight: 700">きょうのメニュー</span>
+<span style="font-size: 14px; line-height: 1.75; color: #46514D">その日のモードの項目だけ。チェックは「できた」として残る。</span>
+</li>
+<li style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+<span style="align-self: flex-start; padding: 4px 12px; border-radius: 999px; background: #E3E8F4; font-size: 13px; font-weight: 700; color: #34407A">3 いつでも</span>
+<span style="font-size: 18px; font-weight: 700">つらいとき</span>
+<span style="font-size: 14px; line-height: 1.75; color: #46514D">下のタブの真ん中から。「自分はだめだ」と感じたら、解釈の前に、からだを確かめる。</span>
+</li>
+<li style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+<span style="align-self: flex-start; padding: 4px 12px; border-radius: 999px; background: #E3E8F4; font-size: 13px; font-weight: 700; color: #34407A">4 夜</span>
+<span style="font-size: 18px; font-weight: 700">できたを1行</span>
+<span style="font-size: 14px; line-height: 1.75; color: #46514D">寝る前に、任意で1行。22時を過ぎたら夜の画面になり、記録はしない。</span>
+</li>
+<li style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+<span style="align-self: flex-start; padding: 4px 12px; border-radius: 999px; background: #FBE7C2; font-size: 13px; font-weight: 700; color: #6B4700">5 週1回</span>
+<span style="font-size: 18px; font-weight: 700">ふりかえり</span>
+<span style="font-size: 14px; line-height: 1.75; color: #46514D">ひろげる日だけ。5つの質問で、記録を証拠に「自分はだめだ」を見直す。</span>
+</li>
+</ol>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0; font-size: 16px; font-weight: 700; letter-spacing: 0.14em; color: #34407A">機能と根拠</p>
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 24px; overflow: hidden">
+<table style="width: 100%; border-collapse: collapse; font-size: 14.5px; line-height: 1.6">
+<thead>
+<tr style="background: #E8ECEA; text-align: left">
+<th style="padding: 14px 20px; width: 180px; font-size: 14px; color: #46514D">機能</th>
+<th style="padding: 14px 20px; font-size: 14px; color: #46514D">役割</th>
+<th style="padding: 14px 20px; width: 420px; font-size: 14px; color: #46514D">根拠</th>
+<th style="padding: 14px 20px; width: 170px; font-size: 14px; color: #46514D">確かさ</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #E3E7E5">
+<td style="padding: 14px 20px; font-weight: 700">朝のチェックイン</td>
+<td style="padding: 14px 20px">睡眠・気分・疲れを1タップずつ記録し、状態を3つから選ぶ</td>
+<td style="padding: 14px 20px; color: #46514D">強いストレスで、前頭前野の働きが落ちる（Arnsten 2009）</td>
+<td style="padding: 14px 20px"><span style="display: inline-block; padding: 3px 10px; border-radius: 999px; background: #EEF1EF; font-size: 13px; font-weight: 700; color: #46514D">基礎研究からの推論</span></td>
+</tr>
+<tr style="border-top: 1px solid #E3E7E5">
+<td style="padding: 14px 20px; font-weight: 700">きょうのメニュー</td>
+<td style="padding: 14px 20px">光・水と食事・歩く・小さな活動・人との接触</td>
+<td style="padding: 14px 20px; color: #46514D">行動活性化は認知行動療法と同等の効果（Richards 2016）。その考え方を応用</td>
+<td style="padding: 14px 20px"><span style="display: inline-block; padding: 3px 10px; border-radius: 999px; background: #EEF1EF; font-size: 13px; font-weight: 700; color: #46514D">治療法の応用</span></td>
+</tr>
+<tr style="border-top: 1px solid #E3E7E5">
+<td style="padding: 14px 20px; font-weight: 700">4週間の歩くプラン</td>
+<td style="padding: 14px 20px">週50分から150分まで、少しずつ増やす</td>
+<td style="padding: 14px 20px; color: #46514D">推奨量の身体活動で、うつ病の発症リスクが25%低いという関連（Pearce 2022）</td>
+<td style="padding: 14px 20px"><span style="display: inline-block; padding: 3px 10px; border-radius: 999px; background: #EEF1EF; font-size: 13px; font-weight: 700; color: #46514D">観察研究</span></td>
+</tr>
+<tr style="border-top: 1px solid #E3E7E5">
+<td style="padding: 14px 20px; font-weight: 700">夜の睡眠ガード</td>
+<td style="padding: 14px 20px">起床時刻をそろえ、眠れないときは一度布団を出る。22時以降は画面を暗くし、記録を求めない</td>
+<td style="padding: 14px 20px; color: #46514D">60歳以上の不眠の人で、専門的な不眠治療が発症をほぼ半分に（Irwin 2022）。その一部を応用</td>
+<td style="padding: 14px 20px"><span style="display: inline-block; padding: 3px 10px; border-radius: 999px; background: #EEF1EF; font-size: 13px; font-weight: 700; color: #46514D">治療研究の一部を応用</span></td>
+</tr>
+<tr style="border-top: 1px solid #E3E7E5">
+<td style="padding: 14px 20px; font-weight: 700">つらいとき</td>
+<td style="padding: 14px 20px">解釈の前に、からだを確かめて先に手当てする。危機のときは相談へ直行</td>
+<td style="padding: 14px 20px; color: #46514D">意味は身体の予測からつくられるという仮説（Barrett 2017）</td>
+<td style="padding: 14px 20px"><span style="display: inline-block; padding: 3px 10px; border-radius: 999px; background: #EEF1EF; font-size: 13px; font-weight: 700; color: #46514D">理論</span></td>
+</tr>
+<tr style="border-top: 1px solid #E3E7E5">
+<td style="padding: 14px 20px; font-weight: 700">ため息呼吸</td>
+<td style="padding: 14px 20px">吸って、吸い足して、長く吐く。5分のガイド</td>
+<td style="padding: 14px 20px; color: #46514D">1日5分を1か月続けた健康な学生108人で、気分が改善（Balban 2023）</td>
+<td style="padding: 14px 20px"><span style="display: inline-block; padding: 3px 10px; border-radius: 999px; background: #EEF1EF; font-size: 13px; font-weight: 700; color: #46514D">予備的</span></td>
+</tr>
+<tr style="border-top: 1px solid #E3E7E5">
+<td style="padding: 14px 20px; font-weight: 700">できたログ</td>
+<td style="padding: 14px 20px">連続記録の代わりに、できたことだけを数える</td>
+<td style="padding: 14px 20px; color: #46514D">予測は、言葉より体験で更新されるという考え方（予測処理モデル）</td>
+<td style="padding: 14px 20px"><span style="display: inline-block; padding: 3px 10px; border-radius: 999px; background: #EEF1EF; font-size: 13px; font-weight: 700; color: #46514D">理論</span></td>
+</tr>
+<tr style="border-top: 1px solid #E3E7E5">
+<td style="padding: 14px 20px; font-weight: 700">わかったこと・ふりかえり</td>
+<td style="padding: 14px 20px">睡眠と気分の関係を自分の記録で見せ、週1回見直す</td>
+<td style="padding: 14px 20px; color: #46514D">記録を証拠に考えを見直す、認知行動療法の技法を応用</td>
+<td style="padding: 14px 20px"><span style="display: inline-block; padding: 3px 10px; border-radius: 999px; background: #EEF1EF; font-size: 13px; font-weight: 700; color: #46514D">応用・効果は未検証</span></td>
+</tr>
+<tr style="border-top: 1px solid #E3E7E5">
+<td style="padding: 14px 20px; font-weight: 700">受診用のまとめ</td>
+<td style="padding: 14px 20px">2週間の記録を1枚に。送る前に中身を確認し、送り先は本人が選ぶ</td>
+<td style="padding: 14px 20px; color: #46514D">PHQ-2にならった2つの質問と、からだの記録を、受診のきっかけに使う</td>
+<td style="padding: 14px 20px"><span style="display: inline-block; padding: 3px 10px; border-radius: 999px; background: #EEF1EF; font-size: 13px; font-weight: 700; color: #46514D">スクリーニングの応用</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section style="margin-top: auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px">
+<div style="background: #1B2140; color: #EEF0F8; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 22px; font-weight: 700">安全の設計</span>
+<ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 10px; font-size: 14.5px; line-height: 1.7; color: #D5D9EC">
+<li>相談ボタンを、すべての画面の右上に置く。下のタブの真ん中には「つらいとき」</li>
+<li>119と24時間の窓口に、その場で電話できる。夜の画面にも出し、通信がなくても表示する</li>
+<li>受診の目安は、モードの選び方ではなく、週1回の2つの質問（PHQ-2にならう）で判断。合計3点以上で案内する</li>
+<li>病気の予防や治療の効果はうたわない。医療機器と広告の規制を、公開前に確認する</li>
+</ul>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 22px; font-weight: 700">プライバシー</span>
+<ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 10px; font-size: 14.5px; line-height: 1.7; color: #46514D">
+<li>使い始めに同意をとる。記録はこの端末の中だけに保存し、バックアップは任意で暗号化</li>
+<li>顔認証・指紋でアプリをロックする</li>
+<li>通知は1日1回まで。ロック画面に記録の中身を出さない</li>
+<li>書き出しと全削除はいつでも。共有する前に中身を確認できる</li>
+</ul>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 22px; font-weight: 700">成功のものさし</span>
+<ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 10px; font-size: 14.5px; line-height: 1.7; color: #46514D">
+<li>連続日数ではなく、★を1つでもできた日の割合</li>
+<li>まもる日がつづいたあとや、間があいたあとに、戻ってきた割合</li>
+<li>4週間後に「からだと気分の関係がわかった」と答えた割合</li>
+</ul>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 22px; font-weight: 700">ロードマップ</span>
+<ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 10px; font-size: 14.5px; line-height: 1.7; color: #46514D">
+<li><b style="color: #1C2321">最初の版：</b>はじめに、チェックイン、3つのモード、つらいとき、できたログ、夜の画面、相談と受診用のまとめ</li>
+<li><b style="color: #1C2321">次：</b>睡眠と歩数をヘルスケアアプリから取り込み、入力をさらに減らす</li>
+<li><b style="color: #1C2321">その次：</b>まとめを4週間に広げ、主治医やカウンセラーと使い方を検証する</li>
+</ul>
+</div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2680}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

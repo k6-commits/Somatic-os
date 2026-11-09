@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>プロトタイプ</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@500;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 820px; height: 910px; box-sizing: border-box; padding: 32px; display: flex; gap: 40px; background: #E4E7E5; color: #1C2321; font-family: 'Zen Kaku Gothic New', sans-serif; word-break: auto-phrase">
+
+<div style="flex: none; position: relative; width: 390px; height: 844px; overflow: hidden; border-radius: 32px; background: #F1F3F2; box-shadow: 0 0 0 1px #C3CAC7">
+<sc-if value="{{mounted}}" hint-placeholder-val="{{ true }}">
+<div style="position: absolute; inset: 0; display: {{show.Onboarding}}"><dc-import name="Onboarding" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+<div style="position: absolute; inset: 0; display: {{show.Privacy}}"><dc-import name="Privacy" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+<div style="position: absolute; inset: 0; display: {{show.CheckIn}}"><dc-import name="CheckIn" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+<div style="position: absolute; inset: 0; display: {{show.WeeklyCheck}}"><dc-import name="WeeklyCheck" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+<div style="position: absolute; inset: 0; display: {{show.HomeRest}}"><dc-import name="HomeRest" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+<div style="position: absolute; inset: 0; display: {{show.HomeTune}}"><dc-import name="HomeTune" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+<div style="position: absolute; inset: 0; display: {{show.HomeExpand}}"><dc-import name="HomeExpand" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+<div style="position: absolute; inset: 0; display: {{show.Night}}"><dc-import name="Night" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+<div style="position: absolute; inset: 0; display: {{show.Pause}}"><dc-import name="Pause" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+<div style="position: absolute; inset: 0; display: {{show.Breath}}"><dc-import name="Breath" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+<div style="position: absolute; inset: 0; display: {{show.Evidence}}"><dc-import name="Evidence" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+<div style="position: absolute; inset: 0; display: {{show.Insights}}"><dc-import name="Insights" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+<div style="position: absolute; inset: 0; display: {{show.Review}}"><dc-import name="Review" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+<div style="position: absolute; inset: 0; display: {{show.Consult}}"><dc-import name="Consult" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+<div style="position: absolute; inset: 0; display: {{show.Summary}}"><dc-import name="Summary" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+<div style="position: absolute; inset: 0; display: {{show.WelcomeBack}}"><dc-import name="WelcomeBack" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+<div style="position: absolute; inset: 0; display: {{sheetDisp}}"><dc-import name="ModeSheet" nav="{{nav}}" mode="{{mode}}" days="{{days}}" scene="{{scene}}" hint-size="390px,844px"></dc-import></div>
+</sc-if>
+</div>
+
+<aside style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 24px; font-weight: 700">プロトタイプ</span>
+<span style="font-size: 14px; line-height: 1.7; color: #46514D">左の画面を、アプリのように操作できます。</span>
+<span style="font-size: 14px; line-height: 1.7; color: #46514D">モードと「戻る」は、全体で引き継がれます。</span>
+<span style="font-size: 14px; line-height: 1.7; color: #46514D">画面の明るさは、時刻で変わります。</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span id="scene-label" style="font-size: 13px; font-weight: 700; color: #34407A">場面</span>
+<div role="group" aria-labelledby="scene-label" style="display: flex; gap: 8px">
+<sc-for list="{{scenes}}" as="o" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="flex: 1; min-height: 44px; border-radius: 12px; border: 1px solid {{o.bd}}; background: {{o.bg}}; color: {{o.fg}}; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span id="time-label" style="font-size: 13px; font-weight: 700; color: #34407A">時刻</span>
+<div role="group" aria-labelledby="time-label" style="display: flex; gap: 8px">
+<sc-for list="{{times}}" as="o" hint-placeholder-count="2">
+<button type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="flex: 1; min-height: 44px; border-radius: 12px; border: 1px solid {{o.bd}}; background: {{o.bg}}; color: {{o.fg}}; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<div aria-live="polite" style="background: #FFFFFF; border: 1px solid #D4DAD7; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; font-size: 14px">
+<span style="font-size: 13px; font-weight: 700; color: #34407A">いまの状態</span>
+<span>モード：<b>{{modeName}}</b></span>
+<span>画面：<b>{{screenName}}</b></span>
+<span>時刻：<b>{{timeName}}</b></span>
+</div>
+
+<button type="button" onClick="{{reset}}" style="align-self: flex-start; min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1.5px solid #34407A; background: transparent; color: #34407A; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer">この場面を最初から</button>
+
+<p style="margin: auto 0 0; font-size: 13px; line-height: 1.7; color: #46514D">数字はすべてサンプルです。画面ごとの単体表示は、下の一覧にあります。</p>
+</aside>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":820,"height":910}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { scene: 'two', time: 'morning', mode: 'tune', stack: ['CheckIn'], sheet: false, mounted: true };
+}
+homeOf(mode, time) {
+if (time === 'night') return 'Night';
+if (mode === 'rest') return 'HomeRest';
+if (mode === 'expand') return 'HomeExpand';
+return 'HomeTune';
+}
+startScene(scene, time) {
+let stack;
+if (scene === 'first') stack = ['Onboarding'];
+else if (scene === 'back') stack = ['WelcomeBack'];
+else stack = [time === 'night' ? 'Night' : 'CheckIn'];
+this.setState({ scene: scene, time: time, mode: 'tune', stack: stack, sheet: false, mounted: false }, () => {
+setTimeout(() => this.setState({ mounted: true }), 0);
+});
+}
+renderVals() {
+const s = this.state;
+const roots = { HomeRest: 'rest', HomeTune: 'tune', HomeExpand: 'expand' };
+const nav = {
+go: (t) => {
+const cur = this.state;
+if (roots[t]) {
+this.setState({ mode: roots[t], stack: [this.homeOf(roots[t], cur.time)], sheet: false });
+return;
+}
+if (t === 'CheckIn' || t === 'Night') {
+this.setState({ stack: [t], sheet: false });
+return;
+}
+this.setState({ stack: cur.stack.concat([t]), sheet: false });
+},
+back: () => {
+const cur = this.state;
+const st = cur.stack;
+this.setState({ stack: st.length > 1 ? st.slice(0, -1) : [this.homeOf(cur.mode, cur.time)], sheet: false });
+},
+home: () => {
+const cur = this.state;
+this.setState({ stack: [this.homeOf(cur.mode, cur.time)], sheet: false });
+},
+openSheet: () => this.setState({ sheet: true }),
+closeSheet: () => this.setState({ sheet: false }),
+setMode: (m) => {
+const cur = this.state;
+this.setState({ mode: m, sheet: false, stack: [this.homeOf(m, cur.time)] });
+}
+};
+const names = ['Onboarding', 'Privacy', 'CheckIn', 'WeeklyCheck', 'HomeRest', 'HomeTune', 'HomeExpand', 'Night', 'Pause', 'Breath', 'Evidence', 'Insights', 'Review', 'Consult', 'Summary', 'WelcomeBack'];
+const labels = {
+Onboarding: 'はじめに', Privacy: 'はじめる前に', CheckIn: '朝のチェックイン', WeeklyCheck: '日曜日の2つの質問',
+HomeRest: 'ホーム（まもる日）', HomeTune: 'ホーム（ととのえる日）', HomeExpand: 'ホーム（ひろげる日）', Night: '夜の画面',
+Pause: 'つらいとき', Breath: 'ため息呼吸', Evidence: 'きろく', Insights: 'わかったこと',
+Review: '週1のふりかえり', Consult: '相談する', Summary: '受診用のまとめ', WelcomeBack: 'おかえりなさい'
+};
+const cur = s.stack[s.stack.length - 1];
+const show = {};
+names.forEach((n) => { show[n] = n === cur ? 'block' : 'none'; });
+const pill = (on) => ({ bg: on ? '#34407A' : '#FFFFFF', fg: on ? '#FFFFFF' : '#1C2321', bd: on ? '#34407A' : '#8A9490' });
+const scenes = [
+{ key: 'first', label: 'はじめて' },
+{ key: 'two', label: '2週間後' },
+{ key: 'back', label: '7日ぶり' }
+].map((o) => Object.assign({ label: o.label, pressed: s.scene === o.key, pick: () => this.startScene(o.key, this.state.time) }, pill(s.scene === o.key)));
+const times = [
+{ key: 'morning', label: '昼間' },
+{ key: 'night', label: '夜 22時以降' }
+].map((o) => Object.assign({ label: o.label, pressed: s.time === o.key, pick: () => this.startScene(this.state.scene, o.key) }, pill(s.time === o.key)));
+const modeNames = { rest: 'まもる日', tune: 'ととのえる日', expand: 'ひろげる日' };
+return {
+nav: nav,
+mode: s.mode,
+days: s.scene === 'first' ? 0 : 14,
+scene: s.scene,
+show: show,
+sheetDisp: s.sheet ? 'block' : 'none',
+mounted: s.mounted,
+scenes: scenes,
+times: times,
+modeName: modeNames[s.mode],
+screenName: labels[cur] || cur,
+timeName: s.time === 'night' ? '夜 22時以降（画面は暗く）' : '昼間',
+reset: () => this.startScene(this.state.scene, this.state.time)
+};
+}
+}
+</script>
+</body>
+</html>

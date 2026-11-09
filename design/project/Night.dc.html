@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>夜の画面</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@500;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 52px 20px 28px; display: flex; flex-direction: column; gap: 12px; background: #1B2140; color: #EEF0F8; font-family: 'Zen Kaku Gothic New', sans-serif; word-break: auto-phrase">
+
+<div style="display: flex; justify-content: space-between; align-items: center">
+<span style="min-height: 44px; box-sizing: border-box; padding: 8px 14px 8px 10px; border-radius: 999px; background: #262D52; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill: none; stroke: #E8D8A0; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>
+夜 22:30
+</span>
+<a href="{{lk.consult.href}}" onClick="{{lk.consult.on}}" aria-label="相談する" style="width: 44px; height: 44px; border-radius: 50%; background: #262D52; color: #E8D8A0; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle><path d="M5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"></path></svg>
+</a>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.35">おやすみ前の時間です</h1>
+<p style="margin: 0; font-size: 15px; line-height: 1.7; color: #C9CEE6">夜は記録しなくて大丈夫。きょうのことは、朝に聞きます。</p>
+</div>
+
+<div style="background: #232A4C; border-radius: 20px; padding: 14px 16px; display: flex; align-items: center; gap: 14px">
+<span aria-hidden="true" style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #2A3260; color: #E8D8A0; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="20" height="20" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M3 18V8M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"></path><circle cx="7" cy="11" r="2"></circle></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 16px; font-weight: 700"><span aria-hidden="true" style="color: #E8D8A0">★ </span>眠れなければ、一度布団を出る</span>
+<span style="font-size: 13px; color: #AEB5D3">眠くなってから戻る。スマホは置いていく</span>
+</span>
+</div>
+
+<a href="{{lk.breath.href}}" onClick="{{lk.breath.on}}" style="background: #232A4C; border-radius: 20px; padding: 14px 16px; color: #EEF0F8; text-decoration: none; display: flex; align-items: center; gap: 14px">
+<span aria-hidden="true" style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #2A3260; color: #E8D8A0; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="20" height="20" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M3 8h11a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h8"></path></svg></span>
+<span style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 16px; font-weight: 700">ため息呼吸（5分）</span>
+<span style="font-size: 13px; color: #AEB5D3">画面を見なくても、音声で案内します</span>
+</span>
+<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" style="flex: none; fill: none; stroke: #AEB5D3; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M9 6l6 6-6 6"></path></svg>
+</a>
+
+<div style="background: #232A4C; border-radius: 20px; padding: 14px 16px; display: flex; align-items: center; gap: 14px">
+<span aria-hidden="true" style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #2A3260; color: #E8D8A0; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="20" height="20" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M9 3h6l3 8H6zM12 11v7M8 21h8"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 16px; font-weight: 700">明かりを落とす</span>
+<span style="font-size: 13px; color: #AEB5D3">この画面も、夜は暗くしています</span>
+</span>
+</div>
+
+<div style="margin-top: 6px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 15px; font-weight: 700">つらい考えが止まらないとき</span>
+<span style="font-size: 13px; color: #C9CEE6">24時間、話を聞いてくれる窓口があります。</span>
+<a href="tel:0120061338" style="min-height: 52px; box-sizing: border-box; padding: 6px 14px; border-radius: 16px; background: #E8D8A0; color: #1B2140; text-decoration: none; display: flex; align-items: center; gap: 12px">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 1px">
+<span style="font-size: 14.5px; font-weight: 700">#いのちSOS</span>
+<span style="font-size: 12.5px; color: #3A3F5C">0120-061-338 · 毎日24時間・無料</span>
+</span>
+</a>
+<a href="tel:0120279338" style="min-height: 52px; box-sizing: border-box; padding: 6px 14px; border-radius: 16px; border: 1.5px solid #E8D8A0; color: #EEF0F8; text-decoration: none; display: flex; align-items: center; gap: 12px">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="flex: none; fill: none; stroke: #E8D8A0; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 1px">
+<span style="font-size: 14.5px; font-weight: 700">よりそいホットライン</span>
+<span style="font-size: 12.5px; color: #C9CEE6">0120-279-338 · 24時間・無料</span>
+</span>
+</a>
+<a href="tel:119" style="align-self: flex-start; min-height: 44px; display: flex; align-items: center; font-size: 13.5px; font-weight: 700; color: #E8D8A0">命の危険があるときは 119</a>
+</div>
+
+<p style="margin: auto 0 0; text-align: center; font-size: 12.5px; color: #AEB5D3">朝7時から、チェックインできます</p>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"nav":{"editor":null},"mode":{"editor":null},"days":{"editor":null},"scene":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+lk(target, fn) {
+const nav = this.props.nav;
+if (!nav) return { href: target + '.dc.html', on: null };
+return {
+href: '#',
+on: (e) => {
+if (e && e.preventDefault) e.preventDefault();
+if (fn) fn(nav); else nav.go(target);
+}
+};
+}
+renderVals() {
+return {
+lk: { consult: this.lk('Consult'), breath: this.lk('Breath') }
+};
+}
+}
+</script>
+</body>
+</html>

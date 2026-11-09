@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>はじめる前に</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@500;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 52px 20px 24px; display: flex; flex-direction: column; gap: 12px; background: #F1F3F2; color: #1C2321; font-family: 'Zen Kaku Gothic New', sans-serif; word-break: auto-phrase">
+
+<div style="display: flex; justify-content: space-between; align-items: center">
+<div style="display: flex; align-items: center; gap: 10px">
+<div aria-hidden="true" style="width: 30px; height: 30px; border-radius: 50%; background: #1B2140; display: flex; align-items: center; justify-content: center">
+<div style="width: 10px; height: 10px; border-radius: 50%; background: #E8D8A0"></div>
+</div>
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 16px">Somatic OS</span>
+</div>
+<a href="{{lk.consult.href}}" onClick="{{lk.consult.on}}" aria-label="相談する" style="width: 44px; height: 44px; box-sizing: border-box; border-radius: 50%; background: #FFFFFF; border: 1px solid #DCE1DF; color: #34407A; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle><path d="M5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"></path></svg>
+</a>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<p style="margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; color: #34407A">はじめる前に</p>
+<h1 style="margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.4">あなたの記録は、<br>あなたのもの。</h1>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.7; color: #46514D">からだと気分の記録は、とても個人的な情報です。使う前に、守り方を決めておきます。</p>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 22px; padding: 4px 0; display: flex; flex-direction: column">
+<div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid #EEF1EF">
+<span aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 50%; background: #E3E8F4; color: #34407A; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="20" height="20" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><rect x="7" y="2.5" width="10" height="19" rx="2"></rect><path d="M11 18h2"></path></svg></span>
+<span style="flex: 1; display: flex; flex-direction: column; gap: 1px">
+<span style="font-size: 12px; color: #56615D">保存先</span>
+<span style="font-size: 15px; font-weight: 700">この端末の中だけ</span>
+<span style="font-size: 12px; color: #56615D">外には送りません</span>
+</span>
+<span style="flex: none; padding: 3px 8px; border-radius: 6px; background: #E3E8F4; font-size: 11.5px; font-weight: 700; color: #34407A">おすすめ</span>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid #EEF1EF">
+<span aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 50%; background: #E3E8F4; color: #34407A; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="20" height="20" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span>
+<span style="flex: 1; display: flex; flex-direction: column; gap: 1px">
+<span style="font-size: 12px; color: #56615D">アプリのロック</span>
+<span style="font-size: 15px; font-weight: 700">顔認証・指紋でロック</span>
+</span>
+<button type="button" role="switch" aria-checked="{{lockOn}}" aria-label="アプリのロック" onClick="{{toggleLock}}" style="flex: none; width: 52px; height: 44px; padding: 0; border: none; background: transparent; cursor: pointer; display: flex; align-items: center">
+<span style="width: 48px; height: 28px; box-sizing: border-box; border-radius: 999px; padding: 3px; background: {{lockTrack}}; display: flex; justify-content: {{lockJustify}}"><span style="width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF"></span></span>
+</button>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid #EEF1EF">
+<span aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 50%; background: #E3E8F4; color: #34407A; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="20" height="20" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 20a2 2 0 0 0 4 0"></path></svg></span>
+<span style="flex: 1; display: flex; flex-direction: column; gap: 1px">
+<span style="font-size: 12px; color: #56615D">通知</span>
+<span style="font-size: 15px; font-weight: 700">1日1回まで</span>
+<span style="font-size: 12px; color: #56615D">ロック画面に記録は出ません</span>
+</span>
+<button type="button" role="switch" aria-checked="{{notifyOn}}" aria-label="通知" onClick="{{toggleNotify}}" style="flex: none; width: 52px; height: 44px; padding: 0; border: none; background: transparent; cursor: pointer; display: flex; align-items: center">
+<span style="width: 48px; height: 28px; box-sizing: border-box; border-radius: 999px; padding: 3px; background: {{notifyTrack}}; display: flex; justify-content: {{notifyJustify}}"><span style="width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF"></span></span>
+</button>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid #EEF1EF">
+<span aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 50%; background: #E3E8F4; color: #34407A; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="20" height="20" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="6" cy="12" r="2.5"></circle><circle cx="18" cy="6" r="2.5"></circle><circle cx="18" cy="18" r="2.5"></circle><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"></path></svg></span>
+<span style="flex: 1; display: flex; flex-direction: column; gap: 1px">
+<span style="font-size: 12px; color: #56615D">共有</span>
+<span style="font-size: 15px; font-weight: 700">送る前に、必ず中身を確認</span>
+</span>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px">
+<span aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 50%; background: #E3E8F4; color: #34407A; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="20" height="20" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"></path></svg></span>
+<span style="flex: 1; display: flex; flex-direction: column; gap: 1px">
+<span style="font-size: 12px; color: #56615D">書き出し・削除</span>
+<span style="font-size: 15px; font-weight: 700">いつでも書き出し・全削除</span>
+</span>
+</div>
+</div>
+
+<p style="margin: 0; padding: 12px 14px; border-radius: 16px; background: #E3E7E5; font-size: 13px; line-height: 1.65; color: #2E3835">このアプリは、診断や治療の代わりではありません。持病がある人や治療中の人は、運動の量を主治医と相談してください。</p>
+
+<a href="{{lk.start.href}}" onClick="{{lk.start.on}}" style="margin-top: auto; min-height: 52px; border-radius: 999px; background: #34407A; color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700">同意してはじめる</a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"nav":{"editor":null},"mode":{"editor":null},"days":{"editor":null},"scene":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { lock: true, notify: true };
+}
+lk(target, fn) {
+const nav = this.props.nav;
+if (!nav) return { href: target + '.dc.html', on: null };
+return {
+href: '#',
+on: (e) => {
+if (e && e.preventDefault) e.preventDefault();
+if (fn) fn(nav); else nav.go(target);
+}
+};
+}
+renderVals() {
+const sw = (on) => ({ track: on ? '#34407A' : '#8A9490', justify: on ? 'flex-end' : 'flex-start' });
+const l = sw(this.state.lock);
+const n = sw(this.state.notify);
+return {
+lockOn: this.state.lock,
+lockTrack: l.track,
+lockJustify: l.justify,
+toggleLock: () => this.setState({ lock: !this.state.lock }),
+notifyOn: this.state.notify,
+notifyTrack: n.track,
+notifyJustify: n.justify,
+toggleNotify: () => this.setState({ notify: !this.state.notify }),
+lk: { consult: this.lk('Consult'), start: this.lk('CheckIn') }
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>わかったこと</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;family=Zen+Maru+Gothic:wght@500;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 52px 20px 0; display: flex; flex-direction: column; gap: 10px; background: #F1F3F2; color: #1C2321; font-family: 'Zen Kaku Gothic New', sans-serif; word-break: auto-phrase">
+
+<div style="display: flex; justify-content: space-between; align-items: center">
+<h1 style="margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 28px">わかったこと</h1>
+<a href="{{lk.consult.href}}" onClick="{{lk.consult.on}}" aria-label="相談する" style="width: 44px; height: 44px; box-sizing: border-box; border-radius: 50%; background: #FFFFFF; border: 1px solid #DCE1DF; color: #34407A; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle><path d="M5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"></path></svg>
+</a>
+</div>
+
+<sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 22px; padding: 20px 18px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 17px; font-weight: 700">記録がたまると、ここに出ます</span>
+<span style="font-size: 14px; line-height: 1.7; color: #46514D">からだと気分の関係は、14日分の記録がたまると表示します。少ない日数で決めつけないためです。</span>
+<span style="font-size: 14px; font-weight: 700; color: #34407A">いま{{days}}日分。あと{{remain}}日です。</span>
+</div>
+</sc-if>
+
+<sc-if value="{{rest}}" hint-placeholder-val="{{ false }}">
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 22px; padding: 20px 18px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 17px; font-weight: 700">まもる日は、ふりかえりはお休みです</span>
+<span style="font-size: 14px; line-height: 1.7; color: #46514D">からだを先に。わかったことは、余裕のある日に見られます。</span>
+<a href="{{lk.evidence2.href}}" onClick="{{lk.evidence2.on}}" style="align-self: flex-start; margin-top: 4px; min-height: 44px; box-sizing: border-box; padding: 0 18px; border-radius: 999px; border: 1.5px solid #34407A; color: #34407A; text-decoration: none; display: flex; align-items: center; font-size: 14px; font-weight: 700">きょうのできたを見る</a>
+</div>
+</sc-if>
+
+<sc-if value="{{full}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+<span style="font-size: 13.5px; color: #46514D">14日分の記録から</span>
+<span style="flex: none; padding: 3px 8px; border-radius: 6px; background: #E3E7E5; font-size: 11.5px; font-weight: 700; color: #46514D">サンプル表示</span>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #DCE1DF; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 12.5px; font-weight: 700; color: #34407A">睡眠 × けさの気分（1〜5）</span>
+<span style="font-size: 17px; font-weight: 700">よく眠れた翌朝は、気分が高め</span>
+<div style="display: grid; grid-template-columns: 112px minmax(0, 1fr) 32px; gap: 10px 10px; align-items: center">
+<span style="font-size: 13px; color: #46514D">7時間以上の翌朝</span>
+<div aria-hidden="true" style="height: 10px; border-radius: 999px; background: #E3E8F4; overflow: hidden"><div style="width: 76%; height: 100%; border-radius: 999px; background: #34407A"></div></div>
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 15px; font-weight: 700; text-align: right">3.8</span>
+<span style="font-size: 13px; color: #46514D">6時間未満の翌朝</span>
+<div aria-hidden="true" style="height: 10px; border-radius: 999px; background: #E3E8F4; overflow: hidden"><div style="width: 58%; height: 100%; border-radius: 999px; background: #8E99BF"></div></div>
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 15px; font-weight: 700; text-align: right">2.9</span>
+</div>
+<span style="font-size: 12px; color: #56615D">7時間以上が6日、6時間未満が5日</span>
+</div>
+
+<div style="background: #1B2140; color: #EEF0F8; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 12.5px; font-weight: 700; color: #E8D8A0">からだ × 考え</span>
+<span style="font-size: 16px; font-weight: 700">「だめだ」のときは、眠い・疲れが多め</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="background: #262D52; border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px">
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 22px; font-weight: 700; color: #E8D8A0">5 / 7回</span>
+<span style="font-size: 12px; color: #C9CEE6">「だめだ」と感じたとき</span>
+</div>
+<div style="background: #262D52; border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px">
+<span style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 22px; font-weight: 700; color: #EEF0F8">3 / 14日</span>
+<span style="font-size: 12px; color: #C9CEE6">ふだんの朝</span>
+</div>
+</div>
+<span style="font-size: 13px; line-height: 1.6; color: #C9CEE6">眠い・疲れている状態が重なっていた割合です。からだの状態と、考えの重さは重なりやすいようです。</span>
+</div>
+
+<p style="margin: 0; font-size: 12.5px; color: #56615D">どちらも相関で、原因とは限りません。記録が増えると変わります。</p>
+</sc-if>
+
+<sc-if value="{{canReview}}" hint-placeholder-val="{{ true }}">
+<div style="background: #FBEFD6; border-radius: 22px; padding: 14px 16px; display: flex; align-items: center; gap: 12px">
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 12.5px; font-weight: 700; color: #6B4700">ひろげる日に開けます</span>
+<span style="font-size: 15.5px; font-weight: 700">週1のふりかえり（15分）</span>
+</div>
+<a href="{{lk.review.href}}" onClick="{{lk.review.on}}" style="flex: none; min-height: 44px; box-sizing: border-box; padding: 0 18px; border-radius: 999px; background: #34407A; color: #FFFFFF; text-decoration: none; display: flex; align-items: center; font-size: 14px; font-weight: 700">はじめる</a>
+</div>
+</sc-if>
+
+<sc-if value="{{tuneNote}}" hint-placeholder-val="{{ false }}">
+<p style="margin: 0; font-size: 13px; color: #46514D">週1のふりかえりは、ひろげる日に開けます。</p>
+</sc-if>
+
+<nav aria-label="メインメニュー" style="margin: auto -20px 0; height: 76px; background: #FFFFFF; border-top: 1px solid #DCE1DF; display: flex; justify-content: space-around; align-items: center">
+<a href="{{lk.home.href}}" onClick="{{lk.home.on}}" style="min-width: 72px; min-height: 48px; color: #56615D; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11.5px; font-weight: 700">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1z"></path></svg>
+きょう
+</a>
+<a href="{{lk.evidence.href}}" onClick="{{lk.evidence.on}}" style="min-width: 72px; min-height: 48px; color: #56615D; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11.5px; font-weight: 700">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="7" cy="16" r="3"></circle><circle cx="15" cy="17" r="3.5"></circle><circle cx="12" cy="9" r="3"></circle></svg>
+きろく
+</a>
+<a href="{{lk.pause.href}}" onClick="{{lk.pause.on}}" style="min-width: 72px; min-height: 48px; color: #34407A; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11.5px; font-weight: 700">
+<span aria-hidden="true" style="width: 30px; height: 30px; border-radius: 50%; background: #34407A; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="17" height="17" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg></span>
+つらいとき
+</a>
+<a href="{{lk.self.href}}" onClick="{{lk.self.on}}" aria-current="page" style="min-width: 72px; min-height: 48px; color: #34407A; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11.5px; font-weight: 700">
+<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"></path></svg>
+わかったこと
+</a>
+</nav>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"nav":{"editor":null},"mode":{"editor":null},"days":{"editor":null},"scene":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+lk(target, fn) {
+const nav = this.props.nav;
+if (!nav) return { href: target + '.dc.html', on: null };
+return {
+href: '#',
+on: (e) => {
+if (e && e.preventDefault) e.preventDefault();
+if (fn) fn(nav); else nav.go(target);
+}
+};
+}
+renderVals() {
+const mode = this.props.mode;
+const days = (this.props.days === undefined || this.props.days === null) ? 14 : this.props.days;
+const empty = days < 14;
+const rest = !empty && mode === 'rest';
+const full = !empty && !rest;
+const canReview = full && (mode === undefined || mode === null || mode === 'expand');
+return {
+empty: empty,
+rest: rest,
+full: full,
+canReview: canReview,
+tuneNote: full && mode === 'tune',
+days: days,
+remain: Math.max(0, 14 - days),
+lk: {
+consult: this.lk('Consult'),
+review: this.lk('Review'),
+home: this.lk('HomeTune', (n) => n.home()),
+evidence: this.lk('Evidence'),
+evidence2: this.lk('Evidence'),
+pause: this.lk('Pause'),
+self: this.lk('Insights', () => {})
+}
+};
+}
+}
+</script>
+</body>
+</html>
