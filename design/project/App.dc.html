@@ -109,7 +109,8 @@ this.setState({ mode: roots[t], stack: [this.homeOf(roots[t], cur.time)], sheet:
 return;
 }
 if (t === 'CheckIn' || t === 'Night') {
-this.setState({ stack: [t], sheet: false });
+const dest = cur.time === 'night' ? 'Night' : t;
+this.setState({ stack: [dest], sheet: false });
 return;
 }
 this.setState({ stack: cur.stack.concat([t]), sheet: false });
