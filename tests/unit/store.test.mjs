@@ -127,6 +127,13 @@ test('export and import round-trip; other files are refused', () => {
   assert.throws(() => parseImport('not json'));
 });
 
+test('reminder settings keep only well-formed values', () => {
+  const ok = parseImport(JSON.stringify({ v: 1, days: {}, settings: { reminderTime: '06:30', reminderAddedAt: T, reminderTip: 'dismissed' } }));
+  assert.deepEqual([ok.settings.reminderTime, ok.settings.reminderAddedAt, ok.settings.reminderTip], ['06:30', T, 'dismissed']);
+  const bad = parseImport(JSON.stringify({ v: 1, days: {}, settings: { reminderTime: '7時', reminderAddedAt: 3, reminderTip: 'maybe' } }));
+  assert.deepEqual([bad.settings.reminderTime, bad.settings.reminderAddedAt, bad.settings.reminderTip], [null, null, null]);
+});
+
 test('a full-storage failure is reported', () => {
   const full = { getItem: () => null, setItem: () => { throw new Error('QuotaExceededError'); } };
   assert.equal(save(emptyData(), full), false);

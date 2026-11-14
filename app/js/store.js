@@ -19,6 +19,9 @@ export function emptyData() {
       vibrate: true,
       trusted: { name: '', tel: '' },
       welcomeSeen: null,
+      reminderTime: null,
+      reminderAddedAt: null,
+      reminderTip: null,
     },
     days: {},
     weekly: {},
@@ -99,6 +102,9 @@ export function normalize(raw) {
       tel: isObj(s.trusted) ? str(s.trusted.tel) || '' : '',
     },
     welcomeSeen: str(s.welcomeSeen),
+    reminderTime: typeof s.reminderTime === 'string' && /^\d{2}:\d{2}$/.test(s.reminderTime) ? s.reminderTime : null,
+    reminderAddedAt: str(s.reminderAddedAt),
+    reminderTip: s.reminderTip === 'dismissed' ? 'dismissed' : null,
   };
   if (isObj(raw.days)) {
     for (const [key, day] of Object.entries(raw.days)) if (DAY_KEY.test(key)) data.days[key] = normalizeDay(day);

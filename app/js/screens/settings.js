@@ -4,7 +4,29 @@ import { html, useState } from '../vendor/preact-htm.js';
 import { BackButton, H1, Icon, Sheet, TopBar } from '../ui.js';
 import { APP_VERSION, CONTACTS_CHECKED } from '../content.js';
 import { emptyData, exportText, parseImport, updateSettings } from '../store.js';
-import { compact } from '../dates.js';
+import { addDays, compact } from '../dates.js';
+import { DEFAULT_REMINDER, REMINDER_TIMES, googleCalendarUrl, timeLabel, timeSlug } from '../calendar.js';
+
+/** Adds a daily check-in event to the phone's calendar; the calendar app sends the alert. */
+function ReminderSection({ app }) {
+  const s = app.data.settings;
+  const time = s.reminderTime || DEFAULT_REMINDER;
+  const pick = (t) => app.update((d) => updateSettings(d, { reminderTime: t }));
+  const added = () => app.update((d) => updateSettings(d, { reminderAddedAt: new Date().toISOString(), reminderTime: time }));
+  const google = googleCalendarUrl({ time, startDay: addDays(app.today, 1) });
+  return html`<section class="card stack" aria-labelledby="remind-h">
+    <h2 id="remind-h" class="card-title">朝のチェックインを思い出す</h2>
+    <p class="body-s">カレンダーに毎朝の予定を入れて、その通知で思い出します。このアプリはサーバーを使わないので、アプリからは通知を送れません。</p>
+    <span id="remind-time" class="field-label">時刻</span>
+    <div class="time-grid" role="group" aria-labelledby="remind-time">
+      ${REMINDER_TIMES.map((t) => html`<button type="button" class="pill square" aria-pressed=${t === time ? 'true' : 'false'} onClick=${() => pick(t)}>${timeLabel(t)}</button>`)}
+    </div>
+    <a class="btn outline" href=${`./reminders/checkin-${timeSlug(time)}.ics`} onClick=${added}><${Icon} name="calendar" size=${18} />カレンダーに追加（iPhoneなど）</a>
+    <a class="btn outline" href=${google} target="_blank" rel="noopener" onClick=${added}><${Icon} name="calendar" size=${18} />Googleカレンダーに追加</a>
+    <p class="note">Googleカレンダーを選ぶと、Googleのページが開きます。送られるのは予定の名前と時刻だけで、記録は送りません。時刻や通知のタイミングは、あとからカレンダーのアプリで変えられます。ここで時刻を変えて追加しなおすときは、前の予定をカレンダーから消してください（通知が2回来ます）。</p>
+    ${s.reminderAddedAt && html`<p class="note" role="status">カレンダーの画面を開きました（${timeLabel(s.reminderTime || time)}）。追加できたかは、翌朝の通知で確かめてください。</p>`}
+  </section>`;
+}
 
 function isStandalone() {
   return (typeof matchMedia === 'function' && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
@@ -76,6 +98,8 @@ export function Settings({ app }) {
         <li>Android（Chrome）：右上のメニュー →「ホーム画面に追加」</li>
       </ul>
     </section>`}
+
+    <${ReminderSection} app=${app} />
 
     <section class="card stack" aria-labelledby="trusted-h">
       <h2 id="trusted-h" class="card-title">信頼できる人</h2>
