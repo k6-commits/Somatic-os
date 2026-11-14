@@ -246,7 +246,7 @@ const run = async () => {
     const gHref = await page.locator('a', { hasText: 'Googleカレンダーに追加' }).getAttribute('href');
     check('reminder: Google link starts tomorrow at 6:30', gHref.startsWith('https://calendar.google.com/') && gHref.includes('dates=20261111T063000%2F20261111T063500'), gHref);
     await Promise.all([page.waitForEvent('download'), icsLink.click()]);
-    check('reminder: adding is remembered', (await visibleText(page, 'カレンダーに追加しました（6:30）')) && (await page.evaluate(() => Boolean(JSON.parse(localStorage.getItem('somatic-os:data:v1')).settings.reminderAddedAt))));
+    check('reminder: adding is remembered', (await visibleText(page, 'カレンダーの画面を開きました（6:30）')) && (await page.evaluate(() => Boolean(JSON.parse(localStorage.getItem('somatic-os:data:v1')).settings.reminderAddedAt))));
     const [download] = await Promise.all([page.waitForEvent('download'), click(page, 'button', '書き出す')]);
     const exported = JSON.parse(readFileSync(await download.path(), 'utf8'));
     check('export file has the records', exported.app === 'somatic-os' && Object.keys(exported.data.days).length === 2, download.suggestedFilename());

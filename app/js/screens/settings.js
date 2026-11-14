@@ -23,8 +23,8 @@ function ReminderSection({ app }) {
     </div>
     <a class="btn outline" href=${`./reminders/checkin-${timeSlug(time)}.ics`} onClick=${added}><${Icon} name="calendar" size=${18} />カレンダーに追加（iPhoneなど）</a>
     <a class="btn outline" href=${google} target="_blank" rel="noopener" onClick=${added}><${Icon} name="calendar" size=${18} />Googleカレンダーに追加</a>
-    <p class="note">Googleカレンダーを選ぶと、Googleのページが開きます。送られるのは予定の名前と時刻だけで、記録は送りません。時刻や通知のタイミングは、あとからカレンダーのアプリで変えられます。</p>
-    ${s.reminderAddedAt && html`<p class="note" role="status">カレンダーに追加しました（${timeLabel(s.reminderTime || time)}）。翌朝、通知が届くか確かめてください。</p>`}
+    <p class="note">Googleカレンダーを選ぶと、Googleのページが開きます。送られるのは予定の名前と時刻だけで、記録は送りません。時刻や通知のタイミングは、あとからカレンダーのアプリで変えられます。ここで時刻を変えて追加しなおすときは、前の予定をカレンダーから消してください（通知が2回来ます）。</p>
+    ${s.reminderAddedAt && html`<p class="note" role="status">カレンダーの画面を開きました（${timeLabel(s.reminderTime || time)}）。追加できたかは、翌朝の通知で確かめてください。</p>`}
   </section>`;
 }
 
