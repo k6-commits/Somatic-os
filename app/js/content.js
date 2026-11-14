@@ -2,7 +2,7 @@
 // The menu follows docs/practice-guide.md. Crisis numbers were checked on the
 // Ministry of Health, Labour and Welfare page on CONTACTS_CHECKED.
 
-export const APP_VERSION = '0.1.0';
+export const APP_VERSION = '0.2.0';
 
 export const MODES = {
   rest: { name: 'まもる日', desc: '起きるのも考えるのもつらい', sheet: '★だけにします' },

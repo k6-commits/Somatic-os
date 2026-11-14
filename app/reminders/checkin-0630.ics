@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Somatic OS//Morning reminder//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:somatic-os-checkin-0630@k6-commits.github.io
+DTSTAMP:20261114T000000Z
+DTSTART:20261115T063000
+DTEND:20261115T063500
+RRULE:FREQ=DAILY
+SUMMARY:朝のチェックイン（Somatic OS）
+DESCRIPTION:まず、からだから。睡眠・気分・疲れを入れて
+ 、きょうの日を選びます。\nhttps://k6-commits.github.io/Somatic
+ -os/
+URL:https://k6-commits.github.io/Somatic-os/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:朝のチェックイン（Somatic OS）
+TRIGGER:PT0M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

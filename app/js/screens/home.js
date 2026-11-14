@@ -3,7 +3,7 @@
 import { html, useState } from '../vendor/preact-htm.js';
 import { BigCheck, CheckRow, ConsultButton, H1, Icon, ModeIcon, Sheet, TabBar, TopBar } from '../ui.js';
 import { MENU, MENU_PARTS, MODES, MODE_ORDER, NIGHT_STAR, REST_STARS, WEEKLY_THRESHOLD } from '../content.js';
-import { addWalk, removeWalk, saveLine, setDone, setMode } from '../store.js';
+import { addWalk, removeWalk, saveLine, setDone, setMode, updateSettings } from '../store.js';
 import { hm, partOfDay, weekStart } from '../dates.js';
 import { doneCount, lastWeekDone, latestWeekly, walkGoalText, walkWeek } from '../stats.js';
 import { CheckIn } from './checkin.js';
@@ -66,6 +66,7 @@ function MenuHome({ app, day }) {
     <${H1} cls="lg">${mode === 'expand' ? 'きょうは、ひろげる日。' : 'きょうは、ととのえる日。'}<//>
     <p class="lead">${mode === 'expand' ? '余裕があれば、今週をふりかえってみましょう。' : '全部できなくても大丈夫。いまの時間の分だけ。'}</p>
     ${mode === 'expand' && html`<${ReviewCard} app=${app} />`}
+    <${ReminderTip} app=${app} />
     <section class="card walk">
       <div class="row">
         <span class="round-ic lg" aria-hidden="true"><${Icon} name="walk" size=${24} /></span>
@@ -106,6 +107,20 @@ function MenuHome({ app, day }) {
     </section>
     <${TabBar} app=${app} current="Home" />
   </main>`;
+}
+
+/** A one-time offer to set up the calendar reminder. Not shown on まもる日, to keep that screen quiet. */
+function ReminderTip({ app }) {
+  const s = app.data.settings;
+  if (s.reminderAddedAt || s.reminderTip === 'dismissed') return null;
+  return html`<section class="card soft stack" aria-labelledby="tip-h">
+    <h2 id="tip-h" class="title-s">毎朝のチェックインを、カレンダーの通知で思い出せます</h2>
+    <div class="row">
+      <button type="button" class="btn small" onClick=${() => app.nav.go('Settings')}>設定する</button>
+      <button type="button" class="text-btn" onClick=${() => app.update((d) => updateSettings(d, { reminderTip: 'dismissed' }))}>今はしない</button>
+    </div>
+    <p class="note">設定（「きろく」の右上）から、いつでもできます。</p>
+  </section>`;
 }
 
 function LineForm({ app, day }) {

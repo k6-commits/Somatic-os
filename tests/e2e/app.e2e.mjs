@@ -117,6 +117,9 @@ const run = async () => {
     check('check-in pill is pressed', (await page.locator('[aria-labelledby="ci-mood"] button[aria-pressed="true"]').innerText()) === '3');
     await click(page, 'button.mode-card', 'ととのえる日');
     check('home: ととのえる日', (await h1(page)).includes('ととのえる日'));
+    check('reminder tip on the first home', await visibleText(page, '毎朝のチェックインを、カレンダーの通知で思い出せます'));
+    await click(page, 'button', '今はしない');
+    check('reminder tip can be dismissed', !(await visibleText(page, '毎朝のチェックインを、カレンダーの通知で思い出せます')));
     check('morning tab open at 7:42', (await page.locator('.part[aria-pressed="true"]').innerText()).startsWith('朝'));
     const m4 = page.locator('[role="checkbox"]', { hasText: '睡眠・気分・疲れを記録する' });
     check('m4 done by check-in', (await m4.getAttribute('aria-checked')) === 'true');
@@ -232,6 +235,18 @@ const run = async () => {
     await click(page, 'button.mode-card', 'ととのえる日');
     await click(page, '.tabbar button', 'きろく');
     await page.locator('[aria-label="設定とデータ"]').click();
+    await page.locator('.time-grid button', { hasText: '6:30' }).click();
+    const icsLink = page.locator('a', { hasText: 'カレンダーに追加（iPhoneなど）' });
+    const icsHref = await icsLink.getAttribute('href');
+    check('reminder: file for the picked time', icsHref.endsWith('reminders/checkin-0630.ics'), icsHref);
+    const icsRes = await page.request.get(new URL(icsHref, page.url()).href);
+    const icsText = await icsRes.text();
+    check('reminder: served as a calendar file', icsRes.ok() && (icsRes.headers()['content-type'] || '').includes('text/calendar'), icsRes.headers()['content-type']);
+    check('reminder: daily at 6:30', icsText.includes('DTSTART:20261115T063000') && icsText.includes('RRULE:FREQ=DAILY'));
+    const gHref = await page.locator('a', { hasText: 'Googleカレンダーに追加' }).getAttribute('href');
+    check('reminder: Google link starts tomorrow at 6:30', gHref.startsWith('https://calendar.google.com/') && gHref.includes('dates=20261111T063000%2F20261111T063500'), gHref);
+    await Promise.all([page.waitForEvent('download'), icsLink.click()]);
+    check('reminder: adding is remembered', (await visibleText(page, 'カレンダーに追加しました（6:30）')) && (await page.evaluate(() => Boolean(JSON.parse(localStorage.getItem('somatic-os:data:v1')).settings.reminderAddedAt))));
     const [download] = await Promise.all([page.waitForEvent('download'), click(page, 'button', '書き出す')]);
     const exported = JSON.parse(readFileSync(await download.path(), 'utf8'));
     check('export file has the records', exported.app === 'somatic-os' && Object.keys(exported.data.days).length === 2, download.suggestedFilename());
@@ -253,6 +268,10 @@ const run = async () => {
     check('review card on ひろげる日', await visibleText(page, '週1のふりかえり'));
     check('walking plan week 4 (started 10/19)', await visibleText(page, '4週目の目安は週150分'));
     await shot(page, '14-home-expand');
+    await click(page, 'button', '設定する');
+    check('reminder tip opens settings', (await h1(page)).includes('設定とデータ') && (await visibleText(page, '朝のチェックインを思い出す')));
+    await shot(page, '14b-settings-reminder');
+    await page.locator('[aria-label="戻る"]').click();
     await click(page, '.tabbar button', 'わかったこと');
     check('insight: sleep and mood', await visibleText(page, 'よく眠れた朝は、気分が高め'));
     check('insight: body and thought', await visibleText(page, '「だめだ」のときは、眠い・疲れが多め'));
@@ -299,9 +318,18 @@ const run = async () => {
     const { context, page } = await newPage(browser, '2026-11-09T07:42:00+09:00');
     await page.evaluate(() => navigator.serviceWorker.ready);
     await page.reload({ waitUntil: 'networkidle' });
+    await Promise.all([
+      page.waitForEvent('download'),
+      page.evaluate(() => {
+        const a = document.createElement('a');
+        a.href = './reminders/checkin-0730.ics';
+        document.body.appendChild(a);
+        a.click();
+      }),
+    ]);
     await context.setOffline(true);
     await page.reload({ waitUntil: 'load' });
-    check('opens offline', (await h1(page)).includes('考えを変える前に'));
+    check('opens offline, even after opening a reminder file', (await h1(page)).includes('考えを変える前に'));
     await context.close();
   }
 
